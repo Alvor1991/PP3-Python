@@ -44,3 +44,15 @@ def validate_workout_data(data):
     # Leaving room for additional validation logic here
 
     return True
+
+def main():
+    """
+    Main function to run the marathon tracker app.
+    """
+    print("Welcome to the Marathon Tracker App\n")
+    workout_data = get_workout_data()
+    update_workout_log(workout_data)
+
+
+if __name__ == '__main__':
+    main()
