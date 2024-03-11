@@ -32,3 +32,15 @@ def get_workout_data():
             break
 
     return workout_data
+
+def validate_workout_data(data):
+    """
+    Validate workout data input.
+    """
+    if len(data) != 7:
+        print("Invalid data: Exactly 7 values required.")
+        return False
+
+    # Leaving room for additional validation logic here
+
+    return True
