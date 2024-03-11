@@ -1,32 +1,21 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+## Fitness Tracker  
 
-Welcome,
+## Intro 
 
-This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **March 14, 2023**
+The Marathon Fitness Tracker is a specialized application designed to assist marathon runners in planning, monitoring, and optimizing their training routines leading up to a marathon race. It offers features tailored specifically to marathon training, including scheduling long runs, tracking mileage, monitoring pace, analyzing performance, and setting reminders for key training sessions. The application will leverage Google Sheets for data storage and will be accessible through a command-line interface (CLI)
 
-## Reminders
 
-- Your code must be placed in the `run.py` file
-- Your dependencies must be placed in the `requirements.txt` file
-- Do not edit any of the other files or your code may not deploy properly
+## User Stories 
 
-## Creating the Heroku app
+As a user, I want to log my workouts with details.
 
-When you create the app, you will need to add two buildpacks from the _Settings_ tab. The ordering is as follows:
+As a user, I want to view my training schedule with planned workouts.
 
-1. `heroku/python`
-2. `heroku/nodejs`
+As a user, I want to track my progress over time.
 
-You must then create a _Config Var_ called `PORT`. Set this to `8000`
+As a user, I want to set reminders for upcoming workouts.
 
-If you have credentials, such as in the Love Sandwiches project, you must create another _Config Var_ called `CREDS` and paste the JSON into the value field.
 
-Connect your GitHub repository and deploy as normal.
 
-## Constraints
 
-The deployment terminal is set to 80 columns by 24 rows. That means that each line of text needs to be 80 characters or less otherwise it will be wrapped onto a second line.
 
----
-
-Happy coding!
