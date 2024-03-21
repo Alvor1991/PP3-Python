@@ -88,6 +88,16 @@ def validate_workout_data(data):
 
     return True
 
+def update_workout_log(data):
+    """
+    Update the workout log with the provided data.
+    """
+    print("Updating workout log...\n")
+    worksheet = SHEET.worksheet("workout_log")
+    worksheet.append_row(data)
+    print("Workout log updated successfully.\n")
+
+# Training Data Function
 def get_training_data():
     """
     Get training data input from the user.
@@ -156,14 +166,29 @@ def update_training(data):
     worksheet.append_row(data)
     print("Training schedule updated successfully.\n")
 
-def update_workout_log(data):
+
+def get_progress_data():
     """
-    Update the workout log with the provided data.
+    Get progress data input from the user.
+    Run a loop to collect valid data from the user via the terminal.
     """
-    print("Updating workout log...\n")
-    worksheet = SHEET.worksheet("workout_log")
-    worksheet.append_row(data)
-    print("Workout log updated successfully.\n")
+    while True:
+        print("Please enter progress details:")
+        print("Format: Month, Total Miles, Average Pace (mm:ss)")
+        print("Example: January, 50, 08:00\n")
+
+        data_str = input("Enter progress details here: ")
+        progress_data = data_str.split(",")
+
+        if validate_progress_data(progress_data):
+            print("Progress data is valid!")
+            break
+
+    return progress_data
+
+
+
+
 
 def main():
     """
