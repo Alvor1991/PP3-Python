@@ -226,6 +226,18 @@ def validate_progress_data(data):
 
     return True
 
+def update_progress(data):
+    """
+    Update the progress sheet with the provided data.
+    """
+    print("Updating progress sheet...\n")
+    worksheet = SHEET.worksheet("progress")
+    worksheet.append_row(data)
+    print("Progress sheet updated successfully.\n")
+
+
+
+
 
 def main():
     """
