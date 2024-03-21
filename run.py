@@ -23,7 +23,7 @@ def get_workout_data():
     while True:
         print("Please enter workout details:")
         print("Format: Date, Distance (km), Duration (hh:mm), Pace (min/km)")
-        print("Example: 2024-03-15, 20, 45:00, 9:00\n")
+        print("Example: 15/03/24, 20, 01:30, 05:30\n")
 
         data_str = input("Enter workout details here: ")
         workout_data = data_str.split(",")
