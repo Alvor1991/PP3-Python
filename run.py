@@ -187,7 +187,44 @@ def get_progress_data():
     return progress_data
 
 
+def validate_progress_data(data):
+    """
+    Validate progress data input.
+    """
+    if len(data) != 3:
+        print("Invalid data: Exactly 3 values required.")
+        return False
 
+    # Validate month
+    months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+    if data[0].strip().title() not in months:
+        print("Invalid month. Please enter a valid month name.")
+        return False
+    
+    # Validate total miles
+    try:
+        total_miles = float(data[1])
+        if total_miles < 0:
+            raise ValueError("Total miles must be a non-negative number.")
+    except ValueError:
+        print("Invalid total miles. Please enter a valid number.")
+        return False
+    
+    # Validate average pace format (mm:ss)
+    pace_parts = data[2].strip().split(":")
+    if len(pace_parts) != 2:
+        print("Invalid average pace format. Please use mm:ss format.")
+        return False
+    try:
+        minutes = int(pace_parts[0])
+        seconds = int(pace_parts[1])
+        if minutes < 0 or seconds < 0 or seconds >= 60:
+            raise ValueError("Invalid pace values.")
+    except ValueError:
+        print("Invalid pace values. Please use positive integers for minutes and seconds.")
+        return False
+
+    return True
 
 
 def main():
