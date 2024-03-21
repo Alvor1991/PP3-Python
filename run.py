@@ -147,6 +147,15 @@ def validate_training_data(data):
 
     return True
 
+def update_training(data):
+    """
+    Update the training schedule with the provided data.
+    """
+    print("Updating training schedule...\n")
+    worksheet = SHEET.worksheet("training")
+    worksheet.append_row(data)
+    print("Training schedule updated successfully.\n")
+
 def update_workout_log(data):
     """
     Update the workout log with the provided data.
