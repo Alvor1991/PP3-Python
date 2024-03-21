@@ -21,8 +21,8 @@ def get_workout_data():
     """
     while True:
         print("Please enter workout details:")
-        print("Format: Date, Workout Type, Distance (km), Duration (hh:mm), Pace (min/km), Weather, Notes")
-        print("Example: 2024-03-15, Long Run, 20, 120, Moderate, Felt good throughout\n")
+        print("Format: Date, Distance (km), Duration (hh:mm), Pace (min/km)")
+        print("Example: 2024-03-15, 20, 45:00, 9:00\n")
 
         data_str = input("Enter workout details here: ")
         workout_data = data_str.split(",")
@@ -37,13 +37,22 @@ def validate_workout_data(data):
     """
     Validate workout data input.
     """
-    if len(data) != 7:
-        print("Invalid data: Exactly 7 values required.")
+    if len(data) != 4:
+        print("Invalid data: Exactly 4 values required.")
         return False
 
     # Leaving room for additional validation logic here
 
     return True
+
+def update_workout_log(data):
+    """
+    Update the workout log with the provided data.
+    """
+    print("Updating workout log...\n")
+    worksheet = SHEET.worksheet("workout_log")
+    worksheet.append_row(data)
+    print("Workout log updated successfully.\n")
 
 def main():
     """
