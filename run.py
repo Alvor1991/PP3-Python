@@ -88,12 +88,12 @@ def validate_workout_data(data):
 
     return True
 
-def update_workout_log(data):
+def update_workout(data):
     """
     Update the workout log with the provided data.
     """
     print("Updating workout log...\n")
-    worksheet = SHEET.worksheet("workout_log")
+    worksheet = SHEET.worksheet("workout")
     worksheet.append_row(data)
     print("Workout log updated successfully.\n")
 
@@ -241,7 +241,7 @@ def main():
     """
     print("Welcome to the Marathon Tracker App\n")
     workout_data = get_workout_data()
-    update_workout_log(workout_data)
+    update_workout(workout_data)
 
     training_data = get_training_data()
     update_training(training_data)
