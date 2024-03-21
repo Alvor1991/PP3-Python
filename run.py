@@ -44,9 +44,18 @@ def validate_workout_data(data):
 
     # Validate date format
     try:
-        datetime.strptime(data[0], '%y/%m/%d')
+        datetime.strptime(data[0], '%d/%m/%y')
     except ValueError:
-        print("Invalid date format. Please use YY/MM/DD format.")
+        print("Invalid date format. Please use DD/MM/YY format.")
+        return False
+    
+    # Validate distance (should be a positive number)
+    try:
+        distance = float(data[1])
+        if distance <= 0:
+            raise ValueError("Distance must be a positive number.")
+    except ValueError:
+        print("Invalid distance. Please enter a valid number.")
         return False
 
     return True
