@@ -42,7 +42,12 @@ def validate_workout_data(data):
         print("Invalid data: Exactly 4 values required.")
         return False
 
-    # Leaving room for additional validation logic here
+    # Validate date format
+    try:
+        datetime.strptime(data[0], '%y/%m/%d')
+    except ValueError:
+        print("Invalid date format. Please use YY/MM/DD format.")
+        return False
 
     return True
 
