@@ -71,6 +71,20 @@ def validate_workout_data(data):
     except ValueError:
         print("Invalid duration values. Please use positive integers for hours and minutes.")
         return False
+    
+    # Validate pace format (mm:ss)
+    pace_parts = data[3].split(":")
+    if len(pace_parts) != 2:
+        print("Invalid pace format. Please use mm:ss format.")
+        return False
+    try:
+        minutes = int(pace_parts[0])
+        seconds = int(pace_parts[1])
+        if minutes < 0 or seconds < 0 or seconds >= 60:
+            raise ValueError("Invalid pace values.")
+    except ValueError:
+        print("Invalid pace values. Please use positive integers for minutes and seconds.")
+        return False
 
     return True
 
