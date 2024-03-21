@@ -57,6 +57,20 @@ def validate_workout_data(data):
     except ValueError:
         print("Invalid distance. Please enter a valid number.")
         return False
+    
+    # Validate duration format (hh:mm)
+    duration_parts = data[2].split(":")
+    if len(duration_parts) != 2:
+        print("Invalid duration format. Please use hh:mm format.")
+        return False
+    try:
+        hours = int(duration_parts[0])
+        minutes = int(duration_parts[1])
+        if hours < 0 or minutes < 0 or minutes >= 60:
+            raise ValueError("Invalid duration values.")
+    except ValueError:
+        print("Invalid duration values. Please use positive integers for hours and minutes.")
+        return False
 
     return True
 
