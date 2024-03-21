@@ -235,10 +235,6 @@ def update_progress(data):
     worksheet.append_row(data)
     print("Progress sheet updated successfully.\n")
 
-
-
-
-
 def main():
     """
     Main function to run the marathon tracker app.
@@ -247,6 +243,11 @@ def main():
     workout_data = get_workout_data()
     update_workout_log(workout_data)
 
+    training_data = get_training_data()
+    update_training(training_data)
+
+    progress_data = get_progress_data()
+    update_progress(progress_data)
 
 if __name__ == '__main__':
     main()
