@@ -14,6 +14,7 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('fitness_tracker')
 
+
 def get_workout_data():
     """
     Get workout data input from the user.
@@ -21,7 +22,7 @@ def get_workout_data():
     """
     while True:
         print("Please enter workout details:")
-        print("Format: Date, Distance (km), Duration (hh:mm), Pace (min/km)")
+        print("Format: Date (DD/MM/YY), Distance (km), Duration (hh:mm), Pace (min/km)")
         print("Example: 15/03/24, 20, 01:30, 05:30\n")
 
         data_str = input("Enter workout details here: ")
@@ -96,6 +97,7 @@ def update_workout(data):
     worksheet.append_row(data)
     print("Workout log updated successfully.\n")
 
+# New function to calculate progress
 def calculate_progress():
     """
     Calculate progress based on the workout data collected over time.
@@ -108,16 +110,13 @@ def calculate_progress():
 
     return total_distance
 
-def update_progress():
+def update_progress(month, total_distance):
     """
-    Update the progress sheet with calculated progress.
+    Update the progress sheet with the calculated progress.
     """
-    total_distance = calculate_progress()
-    progress_data = [datetime.now().strftime('%B'), total_distance, '']  
-
     print("Updating progress sheet...\n")
     worksheet = SHEET.worksheet("progress")
-    worksheet.append_row(progress_data)
+    worksheet.append_row([month, total_distance])
     print("Progress sheet updated successfully.\n")
 
 def main():
@@ -128,7 +127,15 @@ def main():
     workout_data = get_workout_data()
     update_workout(workout_data)
 
-    update_progress()
+    # Extract month from workout data
+    workout_date = datetime.strptime(workout_data[0], '%d/%m/%y')
+    month = workout_date.strftime('%B') 
+
+    # Calculate progress
+    total_distance = calculate_progress()
+
+    # Update progress sheet
+    update_progress(month, total_distance)
 
 if __name__ == '__main__':
     main()
