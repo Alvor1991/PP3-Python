@@ -22,8 +22,8 @@ def get_workout_data():
     """
     while True:
         print("Please enter workout details:")
-        print("Format: Date, Distance (km), Duration (hh:mm), Pace (min/km)")
-        print("Example: 15/03/24, 20, 01:30, 05:30\n")
+        print("Format: Date, Distance (km), Duration (hh:mm)")
+        print("Example: 15/03/24, 20, 01:30\n")
 
         data_str = input("Enter workout details here: ")
         workout_data = data_str.split(",")
@@ -38,8 +38,8 @@ def validate_workout_data(data):
     """
     Validate workout data input.
     """
-    if len(data) != 4:
-        print("Invalid data: Exactly 4 values required.")
+    if len(data) != 3:
+        print("Invalid data: Exactly 3 values required.")
         return False
 
     # Validate date format
@@ -70,20 +70,6 @@ def validate_workout_data(data):
             raise ValueError("Invalid duration values.")
     except ValueError:
         print("Invalid duration values. Please use positive integers for hours and minutes.")
-        return False
-    
-    # Validate pace format (mm:ss)
-    pace_parts = data[3].split(":")
-    if len(pace_parts) != 2:
-        print("Invalid pace format. Please use mm:ss format.")
-        return False
-    try:
-        minutes = int(pace_parts[0])
-        seconds = int(pace_parts[1])
-        if minutes < 0 or seconds < 0 or seconds >= 60:
-            raise ValueError("Invalid pace values.")
-    except ValueError:
-        print("Invalid pace values. Please use positive integers for minutes and seconds.")
         return False
 
     return True
@@ -117,24 +103,6 @@ def calculate_progress():
 
     return total_distance, average_duration
 
-
-# Function to calculate average duration
-def calculate_average_duration():
-    """
-    Calculate average duration of workouts.
-    """
-    worksheet = SHEET.worksheet("workout")
-    data = worksheet.get_all_values()
-
-    total_duration_minutes = sum(int(row[2].split(':')[0]) * 60 + int(row[2].split(':')[1]) for row in data[1:])
-    total_workouts = len(data) - 1  # Exclude header row
-    average_duration_minutes = total_duration_minutes / total_workouts
-    average_duration_hours = int(average_duration_minutes / 60)
-    average_duration_minutes %= 60
-
-    return f"{average_duration_hours:02}:{average_duration_minutes:02}"
-
-# Update the update_progress function
 def update_progress(month, total_distance, average_duration):
     """
     Update the progress sheet with the calculated progress.
