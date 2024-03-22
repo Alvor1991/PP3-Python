@@ -97,76 +97,6 @@ def update_workout(data):
     worksheet.append_row(data)
     print("Workout log updated successfully.\n")
 
-# Training Data Function
-def get_training_data():
-    """
-    Get training data input from the user.
-    Run a loop to collect valid data from the user via the terminal.
-    """
-    while True:
-        print("Please enter training details:")
-        print("Format: Date, Distance (km), Duration (hh:mm)")
-        print("Example: 15/03/24, 10, 01:00\n")
-
-        data_str = input("Enter training details here: ")
-        training_data = data_str.split(",")
-
-        if validate_training_data(training_data):
-            print("Training data is valid!")
-            break
-
-    return training_data
-
-def validate_training_data(data):
-    """
-    Validate training data input.
-    """
-    if len(data) != 3:
-        print("Invalid data: Exactly 3 values required.")
-        return False
-
-    # Validate date format
-    try:
-        datetime.strptime(data[0], '%d/%m/%y')
-    except ValueError:
-        print("Invalid date format. Please use DD/MM/YY format.")
-        return False
-    
-    # Validate distance (should be a positive number)
-    try:
-        distance = float(data[1])
-        if distance <= 0:
-            raise ValueError("Distance must be a positive number.")
-    except ValueError:
-        print("Invalid distance. Please enter a valid number.")
-        return False
-    
-    # Validate duration format (hh:mm)
-    duration_parts = data[2].split(":")
-    if len(duration_parts) != 2:
-        print("Invalid duration format. Please use hh:mm format.")
-        return False
-    try:
-        hours = int(duration_parts[0])
-        minutes = int(duration_parts[1])
-        if hours < 0 or minutes < 0 or minutes >= 60:
-            raise ValueError("Invalid duration values.")
-    except ValueError:
-        print("Invalid duration values. Please use positive integers for hours and minutes.")
-        return False
-
-    return True
-
-def update_training(data):
-    """
-    Update the training schedule with the provided data.
-    """
-    print("Updating training schedule...\n")
-    worksheet = SHEET.worksheet("training")
-    worksheet.append_row(data)
-    print("Training schedule updated successfully.\n")
-
-
 def get_progress_data():
     """
     Get progress data input from the user.
@@ -185,7 +115,6 @@ def get_progress_data():
             break
 
     return progress_data
-
 
 def validate_progress_data(data):
     """
@@ -242,9 +171,6 @@ def main():
     print("Welcome to the Marathon Tracker App\n")
     workout_data = get_workout_data()
     update_workout(workout_data)
-
-    training_data = get_training_data()
-    update_training(training_data)
 
     progress_data = get_progress_data()
     update_progress(progress_data)
