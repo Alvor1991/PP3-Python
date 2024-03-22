@@ -22,7 +22,7 @@ def get_workout_data():
     """
     while True:
         print("Please enter workout details:")
-        print("Format: Date (DD/MM/YY), Distance (km), Duration (hh:mm), Pace (min/km)")
+        print("Format: Date, Distance (km), Duration (hh:mm), Pace (min/km)")
         print("Example: 15/03/24, 20, 01:30, 05:30\n")
 
         data_str = input("Enter workout details here: ")
@@ -97,7 +97,6 @@ def update_workout(data):
     worksheet.append_row(data)
     print("Workout log updated successfully.\n")
 
-# New function to calculate progress
 def calculate_progress():
     """
     Calculate progress based on the workout data collected over time.
@@ -108,15 +107,41 @@ def calculate_progress():
     # Calculate total distance covered
     total_distance = sum(float(row[1]) for row in data[1:])  # Skipping header row
 
-    return total_distance
+    # Calculate average duration
+    durations = [row[2] for row in data[1:]]  # Skipping header row
+    total_duration = sum(map(lambda x: int(x.split(':')[0]) * 60 + int(x.split(':')[1]), durations))
+    average_duration_minutes = total_duration / len(durations)
+    average_duration_hours = average_duration_minutes // 60
+    average_duration_minutes %= 60
+    average_duration = f"{int(average_duration_hours):02}:{int(average_duration_minutes):02}"
 
-def update_progress(month, total_distance):
+    return total_distance, average_duration
+
+
+# Function to calculate average duration
+def calculate_average_duration():
+    """
+    Calculate average duration of workouts.
+    """
+    worksheet = SHEET.worksheet("workout")
+    data = worksheet.get_all_values()
+
+    total_duration_minutes = sum(int(row[2].split(':')[0]) * 60 + int(row[2].split(':')[1]) for row in data[1:])
+    total_workouts = len(data) - 1  # Exclude header row
+    average_duration_minutes = total_duration_minutes / total_workouts
+    average_duration_hours = int(average_duration_minutes / 60)
+    average_duration_minutes %= 60
+
+    return f"{average_duration_hours:02}:{average_duration_minutes:02}"
+
+# Update the update_progress function
+def update_progress(month, total_distance, average_duration):
     """
     Update the progress sheet with the calculated progress.
     """
     print("Updating progress sheet...\n")
     worksheet = SHEET.worksheet("progress")
-    worksheet.append_row([month, total_distance])
+    worksheet.append_row([month, total_distance, average_duration])
     print("Progress sheet updated successfully.\n")
 
 def main():
@@ -132,10 +157,10 @@ def main():
     month = workout_date.strftime('%B') 
 
     # Calculate progress
-    total_distance = calculate_progress()
+    total_distance, average_duration = calculate_progress()
 
     # Update progress sheet
-    update_progress(month, total_distance)
+    update_progress(month, total_distance, average_duration)
 
 if __name__ == '__main__':
     main()
