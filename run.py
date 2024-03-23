@@ -102,7 +102,17 @@ def update_progress(month, total_distance, average_duration):
     """
     print("Updating progress sheet...\n")
     worksheet = SHEET.worksheet("progress")
-    worksheet.append_row([month, total_distance, average_duration])
+
+    # Find all cells containing the month
+    month_cells = worksheet.findall(month)
+
+    if month_cells:
+        row_index = month_cells[0].row
+        worksheet.update_cell(row_index, 2, total_distance)  # Update total distance
+        worksheet.update_cell(row_index, 3, average_duration)  # Update average duration
+    else:
+        print(f"Error: Month {month} not found in progress sheet.")
+
     print("Progress sheet updated successfully.\n")
 
 def main():
@@ -124,5 +134,4 @@ def main():
 
 if __name__ == '__main__':
     main()
-
 
