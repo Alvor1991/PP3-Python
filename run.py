@@ -22,8 +22,8 @@ def get_workout_data():
     """
     while True:
         print("Please enter workout details:")
-        print("Format: Date, Distance (km), Duration (hh:mm)")
-        print("Example: 15/03/24, 20, 01:30\n")
+        print("Format: Month, Distance (km), Duration (hh:mm)")
+        print("Example: March, 20, 01:30\n")
 
         data_str = input("Enter workout details here: ")
         workout_data = data_str.split(",")
@@ -40,13 +40,6 @@ def validate_workout_data(data):
     """
     if len(data) != 3:
         print("Invalid data: Exactly 3 values required.")
-        return False
-
-    # Validate date format
-    try:
-        datetime.strptime(data[0], '%d/%m/%y')
-    except ValueError:
-        print("Invalid date format. Please use DD/MM/YY format.")
         return False
     
     # Validate distance (should be a positive number)
@@ -121,8 +114,7 @@ def main():
     update_workout(workout_data)
 
     # Extract month from workout data
-    workout_date = datetime.strptime(workout_data[0], '%d/%m/%y')
-    month = workout_date.strftime('%B') 
+    month = workout_data[0].strip().capitalize() 
 
     # Calculate progress
     total_distance, average_duration = calculate_progress()
@@ -132,3 +124,5 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+
