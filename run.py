@@ -1,7 +1,7 @@
 import gspread
 from google.oauth2.service_account import Credentials
 from datetime import datetime
-from collections import defaultdict 
+from collections import defaultdict  # Import defaultdict from collections module
 
 # Google Sheets setup
 SCOPE = [
@@ -83,13 +83,29 @@ def calculate_progress():
     """
     worksheet = SHEET.worksheet("workout")
     data = worksheet.get_all_values()[1:]  # Skipping header row
-    grouped_data = defaultdict(float)
+    grouped_data = defaultdict(lambda: {"distance": 0, "duration": [], "count": 0})
 
-    # Group data by month and calculate total distance for each month
+    # Group data by month and calculate total distance and duration for each month
     for row in data:
         month = row[0].strip().capitalize()
         distance = float(row[1])
-        grouped_data[month] += distance
+        duration = row[2]
+        grouped_data[month]["distance"] += distance
+        grouped_data[month]["duration"].append(duration)
+        grouped_data[month]["count"] += 1
+
+    # Calculate average pace for each month
+    for month, info in grouped_data.items():
+        durations = info["duration"]
+        total_duration_minutes = sum(int(d.split(":")[0]) * 60 + int(d.split(":")[1]) for d in durations)
+        total_distance = info["distance"]
+        if total_duration_minutes == 0 or total_distance == 0:
+            grouped_data[month]["average_pace"] = "N/A"
+        else:
+            average_pace_minutes_per_km = total_duration_minutes / total_distance
+            average_pace_minutes = int(average_pace_minutes_per_km)
+            average_pace_seconds = int((average_pace_minutes_per_km - average_pace_minutes) * 60)
+            grouped_data[month]["average_pace"] = f"{average_pace_minutes:02}:{average_pace_seconds:02}"
 
     return grouped_data
 
@@ -104,11 +120,12 @@ def update_progress():
     progress_data = calculate_progress()
 
     # Update progress sheet for each month
-    for month, total_distance in progress_data.items():
+    for month, info in progress_data.items():
         month_cells = worksheet.findall(month)
         if month_cells:
             row_index = month_cells[0].row
-            worksheet.update_cell(row_index, 2, total_distance)  # Update total distance
+            worksheet.update_cell(row_index, 2, info["distance"])  # Update total distance
+            worksheet.update_cell(row_index, 3, info["average_pace"])  # Update average pace
         else:
             print(f"Error: Month {month} not found in progress sheet.")
 
@@ -127,4 +144,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
