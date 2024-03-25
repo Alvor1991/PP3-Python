@@ -2,6 +2,7 @@ import gspread
 from google.oauth2.service_account import Credentials
 from datetime import datetime
 from collections import defaultdict  # Import defaultdict from collections module
+from prettytable import PrettyTable
 
 # Google Sheets setup
 SCOPE = [
@@ -16,7 +17,6 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('fitness_tracker')
 
 
-# Define view_workout_logs function
 def view_workout_logs():
     """
     View workout logs from the terminal.
@@ -24,11 +24,20 @@ def view_workout_logs():
     print("Viewing workout logs...\n")
     worksheet = SHEET.worksheet("workout")
     data = worksheet.get_all_values()
+
+    # Create a PrettyTable instance
+    table = PrettyTable()
+    table.field_names = data[0]  # Assuming the first row contains column headers
+
+    # Add data rows to the table
     for row in data[1:]:
-        print(", ".join(row))  # Print each row of workout data
+        table.add_row(row)
+
+    # Print the table
+    print(table)
+
     print("\n")
 
-# Define view_progress function
 def view_progress():
     """
     View progress from the terminal.
@@ -36,8 +45,18 @@ def view_progress():
     print("Viewing progress...\n")
     worksheet = SHEET.worksheet("progress")
     data = worksheet.get_all_values()
+
+    # Create a PrettyTable instance
+    table = PrettyTable()
+    table.field_names = data[0]  # Assuming the first row contains column headers
+
+    # Add data rows to the table
     for row in data[1:]:
-        print(", ".join(row))  # Print each row of progress data
+        table.add_row(row)
+
+    # Print the table
+    print(table)
+
     print("\n")
 
 def get_workout_data():
