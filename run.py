@@ -2,7 +2,6 @@ import gspread
 from google.oauth2.service_account import Credentials
 from datetime import datetime
 from collections import defaultdict  # Import defaultdict from collections module
-from prettytable import PrettyTable
 
 # Google Sheets setup
 SCOPE = [
@@ -16,7 +15,7 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('fitness_tracker')
 
-
+# Define view_workout_logs function
 def view_workout_logs():
     """
     View workout logs from the terminal.
@@ -24,20 +23,11 @@ def view_workout_logs():
     print("Viewing workout logs...\n")
     worksheet = SHEET.worksheet("workout")
     data = worksheet.get_all_values()
-
-    # Create a PrettyTable instance
-    table = PrettyTable()
-    table.field_names = data[0]  # Assuming the first row contains column headers
-
-    # Add data rows to the table
     for row in data[1:]:
-        table.add_row(row)
-
-    # Print the table
-    print(table)
-
+        print(", ".join(row))  # Print each row of workout data
     print("\n")
 
+# Define view_progress function
 def view_progress():
     """
     View progress from the terminal.
@@ -45,19 +35,10 @@ def view_progress():
     print("Viewing progress...\n")
     worksheet = SHEET.worksheet("progress")
     data = worksheet.get_all_values()
-
-    # Create a PrettyTable instance
-    table = PrettyTable()
-    table.field_names = data[0]  # Assuming the first row contains column headers
-
-    # Add data rows to the table
     for row in data[1:]:
-        table.add_row(row)
-
-    # Print the table
-    print(table)
-
+        print(", ".join(row))  # Print each row of progress data
     print("\n")
+
 
 def get_workout_data():
     """
@@ -66,7 +47,7 @@ def get_workout_data():
     """
     while True:
         print("Please enter workout details:")
-        print("Format: Day Month, Distance (km), Duration (hh:mm)")
+        print("Format: [Day] [Month], Distance (km), Duration (hh:mm)")
         print("Example: 3 March, 20, 01:30\n")
 
         data_str = input("Enter workout details here: ")
@@ -118,6 +99,7 @@ def validate_workout_data(data):
 
     return True
 
+# Define update_workout function
 def update_workout(data):
     """
     Update the workout log with the provided data.
@@ -127,6 +109,7 @@ def update_workout(data):
     worksheet.append_row(data)
     print("Workout log updated successfully.\n")
 
+# Define calculate_progress function
 def calculate_progress():
     """
     Calculate progress based on the workout data collected over time.
@@ -138,6 +121,9 @@ def calculate_progress():
     # Group data by month and calculate total distance and duration for each month
     for row in data:
         date_str = row[0].strip()
+        # Adjust date string to include the day if only month is provided
+        if len(date_str.split()) == 1:
+            date_str = f"1 {date_str}"  # Assuming first day of the month
         workout_date = datetime.strptime(date_str, "%d %B")
         month = workout_date.strftime("%B")
         distance = float(row[1])
@@ -161,6 +147,7 @@ def calculate_progress():
 
     return grouped_data
 
+# Define update progress function
 def update_progress():
     """
     Update the progress sheet with the calculated progress for each month.
