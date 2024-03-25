@@ -23,8 +23,8 @@ def get_workout_data():
     """
     while True:
         print("Please enter workout details:")
-        print("Format: Month, Distance (km), Duration (hh:mm)")
-        print("Example: March, 20, 01:30\n")
+        print("Format: Day Month, Distance (km), Duration (hh:mm)")
+        print("Example: 3 March, 20, 01:30\n")
 
         data_str = input("Enter workout details here: ")
         workout_data = data_str.split(",")
@@ -41,6 +41,13 @@ def validate_workout_data(data):
     """
     if len(data) != 3:
         print("Invalid data: Exactly 3 values required.")
+        return False
+    
+    # Validate workout date format (Day Month)
+    try:
+        workout_date = datetime.strptime(data[0].strip(), "%d %B")
+    except ValueError:
+        print("Invalid workout date format. Please use Day Month format (e.g., 3 March).")
         return False
     
     # Validate distance (should be a positive number)
