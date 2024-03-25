@@ -16,6 +16,30 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('fitness_tracker')
 
 
+# Define view_workout_logs function
+def view_workout_logs():
+    """
+    View workout logs from the terminal.
+    """
+    print("Viewing workout logs...\n")
+    worksheet = SHEET.worksheet("workout")
+    data = worksheet.get_all_values()
+    for row in data[1:]:
+        print(", ".join(row))  # Print each row of workout data
+    print("\n")
+
+# Define view_progress function
+def view_progress():
+    """
+    View progress from the terminal.
+    """
+    print("Viewing progress...\n")
+    worksheet = SHEET.worksheet("progress")
+    data = worksheet.get_all_values()
+    for row in data[1:]:
+        print(", ".join(row))  # Print each row of progress data
+    print("\n")
+
 def get_workout_data():
     """
     Get workout data input from the user.
@@ -145,11 +169,22 @@ def main():
     Main function to run the marathon tracker app.
     """
     print("Welcome to the Marathon Tracker App\n")
-    workout_data = get_workout_data()
-    update_workout(workout_data)
+    print("Choose an option:")
+    print("1. Enter workout data")
+    print("2. View workout logs")
+    print("3. View progress")
+    choice = input("Enter your choice (1, 2, or 3): ")
 
-    # Update progress sheet
-    update_progress()
+    if choice == '1':
+        workout_data = get_workout_data()
+        update_workout(workout_data)
+        update_progress()
+    elif choice == '2':
+        view_workout_logs()
+    elif choice == '3':
+        view_progress()
+    else:
+        print("Invalid choice. Please choose 1, 2, or 3.")
 
 if __name__ == '__main__':
     main()
