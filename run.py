@@ -94,7 +94,9 @@ def calculate_progress():
 
     # Group data by month and calculate total distance and duration for each month
     for row in data:
-        month = row[0].strip().capitalize()
+        date_str = row[0].strip()
+        workout_date = datetime.strptime(date_str, "%d %B")
+        month = workout_date.strftime("%B")
         distance = float(row[1])
         duration = row[2]
         grouped_data[month]["distance"] += distance
