@@ -2,6 +2,7 @@ import gspread
 from google.oauth2.service_account import Credentials
 from datetime import datetime
 from collections import defaultdict  # Import defaultdict from collections module
+import prettytable
 
 # Google Sheets setup
 SCOPE = [
@@ -39,7 +40,6 @@ def view_progress():
         print(", ".join(row))  # Print each row of progress data
     print("\n")
 
-
 def get_workout_data():
     """
     Get workout data input from the user.
@@ -47,8 +47,8 @@ def get_workout_data():
     """
     while True:
         print("Please enter workout details:")
-        print("Format: [Day] [Month], Distance (km), Duration (hh:mm)")
-        print("Example: 3 March, 20, 01:30\n")
+        print("Format: [Day] [Month], Distance (km), Duration (h:mm)")
+        print("Example: 3 March, 20, 1:30\n")
 
         data_str = input("Enter workout details here: ")
         workout_data = data_str.split(",")
@@ -59,6 +59,7 @@ def get_workout_data():
 
     return workout_data
 
+# Modify validate_workout_data function to validate duration format as 'h:mm'
 def validate_workout_data(data):
     """
     Validate workout data input.
@@ -83,10 +84,10 @@ def validate_workout_data(data):
         print("Invalid distance. Please enter a valid number.")
         return False
     
-    # Validate duration format (hh:mm)
+    # Validate duration format (h:mm)
     duration_parts = data[2].split(":")
     if len(duration_parts) != 2:
-        print("Invalid duration format. Please use hh:mm format.")
+        print("Invalid duration format. Please use h:mm format.")
         return False
     try:
         hours = int(duration_parts[0])
@@ -170,11 +171,28 @@ def update_progress():
 
     print("Progress sheet updated successfully.\n")
 
+# Define display_workout_logs function
+def display_workout_logs(data):
+    table = prettytable.PrettyTable(["Date", "Distance (km)", "Duration (hh:mm)"])
+    for row in data[1:]:
+        table.add_row(row)
+    print("Workout Logs:")
+    print(table)
+
+# Define display_progress function
+def display_progress(data):
+    table = prettytable.PrettyTable(["Month", "Total Distance (km)", "Average Pace (mm:ss)"])
+    for month, info in data.items():
+        table.add_row([month, info["distance"], info["average_pace"]])
+    print("Progress:")
+    print(table)
+
+# Main function
 def main():
     """
     Main function to run the marathon tracker app.
     """
-    print("Welcome to the Marathon Tracker App\n")
+    print("Welcome to the Marathon Tracker App. The Fitness Tracker is a specialized application designed to assist me in training for a Marathon. It offers one feature to log my workout and another feature to track my progress each month. \n")
     print("Choose an option:")
     print("1. Enter workout data")
     print("2. View workout logs")
@@ -186,9 +204,11 @@ def main():
         update_workout(workout_data)
         update_progress()
     elif choice == '2':
-        view_workout_logs()
+        data = SHEET.worksheet("workout").get_all_values()
+        display_workout_logs(data)
     elif choice == '3':
-        view_progress()
+        progress_data = calculate_progress()
+        display_progress(progress_data)
     else:
         print("Invalid choice. Please choose 1, 2, or 3.")
 
