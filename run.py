@@ -44,9 +44,9 @@ def get_workout_data():
     Run a loop to collect valid data from the user via the terminal.
     """
     while True:
-        print("Please enter workout details:")
+        print("\nEnter workout details:")
         print("Format: [Day] [Month], Distance (km), Duration (h:mm)")
-        print("Example: 3 March, 20, 1:30\n")
+        print("Example: 3 March, 20, 1:30")
 
         data_str = input("Enter workout details here: ")
         workout_data = data_str.split(",")
@@ -101,10 +101,10 @@ def update_workout(data):
     """
     Update the workout log with the provided data.
     """
-    print("Updating workout log...\n")
+    print("\nUpdating workout log...")
     worksheet = SHEET.worksheet("workout")
     worksheet.append_row(data)
-    print("Workout log updated successfully.\n")
+    print("Workout log updated successfully.")
 
 def calculate_progress():
     """
@@ -147,7 +147,7 @@ def update_progress():
     """
     Update the progress sheet with the calculated progress for each month.
     """
-    print("Updating progress sheet...\n")
+    print("\nUpdating progress sheet...")
     worksheet = SHEET.worksheet("progress")
 
     # Calculate progress
@@ -163,33 +163,45 @@ def update_progress():
         else:
             print(f"Error: Month {month} not found in progress sheet.")
 
-    print("Progress sheet updated successfully.\n")
+    print("Progress sheet updated successfully.")
 
 def display_workout_logs(data):
     """
     Display workout logs along with a brief description.
     """
-    print("Workout Logs:")
+    print("\nWorkout Logs:")
     print("Date: The date of the workout.")
     print("Distance (km): The distance covered during the workout, in kilometers.")
     print("Duration (hh:mm): The duration of the workout, in hours and minutes.")
-    table = prettytable.PrettyTable(["Date", "Distance (km)", "Duration (hh:mm)"])
-    for row in data[1:]:
-        table.add_row(row)
-    print(table)
+
+    if len(data) > 1:
+        print("\n")  # Add a newline above the table
+        table = prettytable.PrettyTable(["Date", "Distance (km)", "Duration (hh:mm)"])
+        for row in data[1:]:
+            table.add_row(row)
+        print(table)
+        print()  # Add a single newline below the table
+    else:
+        print("No workout logs available.")
 
 def display_progress(data):
     """
     Display progress along with a brief description.
     """
-    print("Progress:")
+    print("\nProgress:")
     print("Month: The month for which progress is calculated.")
     print("Total Distance (km): The total distance covered in the month, in kilometers.")
     print("Average Pace (mm:ss): The average pace for the month, in minutes and seconds per kilometer.")
-    table = prettytable.PrettyTable(["Month", "Total Distance (km)", "Average Pace (mm:ss)"])
-    for month, info in data.items():
-        table.add_row([month, info["distance"], info["average_pace"]])
-    print(table)
+
+    if data:
+        print("\n")  # Add a newline above the table
+        table = prettytable.PrettyTable(["Month", "Total Distance (km)", "Average Pace (mm:ss)"])
+        for month, info in data.items():
+            table.add_row([month, info["distance"], info["average_pace"]])
+        print(table)
+        print()  # Add a single newline below the table
+    else:
+        print("No progress data available.")
 
 def print_menu():
     """
@@ -205,19 +217,17 @@ def main():
     """
     Main function to run the marathon tracker app.
     """
-    print("Welcome to the Marathon Tracker App. The Fitness Tracker is a specialized application designed to assist me in training for a Marathon. It offers one feature to log my workout and another feature to track my progress each month. \n")
-    
+    print("Welcome to the Marathon Tracker App. The Fitness Tracker is a specialized application designed to assist me in training for a Marathon.\n")
+
     while True:
         print_menu()
-        choice = input("Enter your choice (1, 2, 3, or 4): ")
+        choice = input("\nEnter your choice (1, 2, 3, or 4): ")
 
         if choice == '1':
-            print()  # Add a blank line for gap
             workout_data = get_workout_data()
             update_workout(workout_data)
             update_progress()
 
-            # Additional navigation options after entering a workout
             while True:
                 print("\nWhat would you like to do next?")
                 print("1. Enter another workout")
@@ -243,6 +253,8 @@ def main():
             break
         else:
             print("Invalid choice. Please choose 1, 2, 3, or 4.")
+
+        print()  # Add a newline before the main menu
 
 if __name__ == '__main__':
     main()
