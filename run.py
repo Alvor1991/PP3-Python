@@ -214,21 +214,22 @@ def display_workout_logs(data):
             table.add_row(row)
         print(table)
         print()  # Add a single newline below the table
+
+        while True:
+            print("\nWhat would you like to do next?")
+            print("1. Back to main menu")
+            print("2. Exit")
+            choice = input("Enter your choice (1 or 2): ")
+
+            if choice == '1':
+                return 'main_menu'
+            elif choice == '2':
+                return 'exit'
+            else:
+                print("Invalid choice. Please enter either 1 or 2.")
     else:
         print("No workout logs available.")
-
-    while True:
-        print("\nWhat would you like to do next?")
-        print("1. Back to main menu")
-        print("2. Exit")
-        choice = input("Enter your choice (1 or 2): ")
-
-        if choice == '1':
-            return 'main_menu'
-        elif choice == '2':
-            return 'exit'
-        else:
-            print("Invalid choice. Please enter either 1 or 2.")
+        return 'main_menu'
 
 
 def display_progress(data):
@@ -253,22 +254,23 @@ def display_progress(data):
             table.add_row([month, info["distance"], info["average_pace"]])
         print(table)
         print()  # Add a single newline below the table
+
+        while True:
+            print("\nWhat would you like to do next?")
+            print("1. Back to main menu")
+            print("2. Exit")
+            choice = input("Enter your choice (1 or 2): ")
+
+            if choice == '1':
+                return 'main_menu'
+            elif choice == '2':
+                return 'exit'
+            else:
+                print("Invalid choice. Please enter either 1 or 2.")
     else:
         print("No progress data available.")
-
-    while True:
-        print("\nWhat would you like to do next?")
-        print("1. Back to main menu")
-        print("2. Exit")
-        choice = input("Enter your choice (1 or 2): ")
-
-        if choice == '1':
-            return 'main_menu'
-        elif choice == '2':
-            return 'exit'
-        else:
-            print("Invalid choice. Please enter either 1 or 2.")
-
+        return 'main_menu'
+    
 
 def print_menu():
     """
@@ -299,29 +301,24 @@ def main():
             update_workout(workout_data)
             update_progress()
 
-            while True:
-                print("\nWhat would you like to do next?")
-                print("1. Enter another workout")
-                print("2. Back to main menu")
-                next_choice = input("Enter your choice (1 or 2): ")
-                if next_choice == '1':
-                    workout_data = get_workout_data()
-                    update_workout(workout_data)
-                    update_progress()
-                elif next_choice == '2':
-                    break
-                else:
-                    print("Invalid choice. Please choose 1 or 2.")
-
         elif choice == '2':
             data = SHEET.worksheet("workout").get_all_values()
-            display_workout_logs(data)
+            action = display_workout_logs(data)
+            if action == 'exit':
+                print("Exiting the Marathon Tracker App. Goodbye!")
+                break
+
         elif choice == '3':
             progress_data = calculate_progress()
-            display_progress(progress_data)
+            action = display_progress(progress_data)
+            if action == 'exit':
+                print("Exiting the Marathon Tracker App. Goodbye!")
+                break
+
         elif choice == '4':
             print("Exiting the Marathon Tracker App. Goodbye!")
             break
+
         else:
             print("Invalid choice. Please choose 1, 2, 3, or 4.")
 
@@ -330,3 +327,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+
