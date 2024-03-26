@@ -193,6 +193,7 @@ def print_menu():
     print("1. Enter workout data")
     print("2. View workout logs")
     print("3. View progress")
+    print("4. Exit")
 
 def main():
     """
@@ -202,9 +203,10 @@ def main():
     
     while True:
         print_menu()
-        choice = input("Enter your choice (1, 2, or 3): ")
+        choice = input("Enter your choice (1, 2, 3, or 4): ")
 
         if choice == '1':
+            print()  # Add a blank line for gap
             workout_data = get_workout_data()
             update_workout(workout_data)
             update_progress()
@@ -230,8 +232,11 @@ def main():
         elif choice == '3':
             progress_data = calculate_progress()
             display_progress(progress_data)
+        elif choice == '4':
+            print("Exiting the Marathon Tracker App. Goodbye!")
+            break
         else:
-            print("Invalid choice. Please choose 1, 2, or 3.")
+            print("Invalid choice. Please choose 1, 2, 3, or 4.")
 
 if __name__ == '__main__':
     main()
