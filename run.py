@@ -1,7 +1,7 @@
 import gspread
 from google.oauth2.service_account import Credentials
 from datetime import datetime
-from collections import defaultdict  
+from collections import defaultdict
 import prettytable
 
 # Google Sheets setup
@@ -16,6 +16,7 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('fitness_tracker')
 
+
 def view_workout_logs():
     """
     View workout logs from the terminal.
@@ -27,6 +28,7 @@ def view_workout_logs():
         print(", ".join(row))  # Print each row of workout data
     print("\n")
 
+
 def view_progress():
     """
     View progress from the terminal.
@@ -37,6 +39,7 @@ def view_progress():
     for row in data[1:]:
         print(", ".join(row))  # Print each row of progress data
     print("\n")
+
 
 def get_workout_data():
     """
@@ -57,6 +60,7 @@ def get_workout_data():
 
     return workout_data
 
+
 def validate_workout_data(data):
     """
     Validate workout data input.
@@ -64,14 +68,14 @@ def validate_workout_data(data):
     if len(data) != 3:
         print("Invalid data: Exactly 3 values required.")
         return False
-    
+
     # Validate workout date format (Day Month)
     try:
         workout_date = datetime.strptime(data[0].strip(), "%d %B")
     except ValueError:
         print("Invalid workout date format. Please use Day Month format (e.g., 3 March).")
         return False
-    
+
     # Validate distance (should be a positive number)
     try:
         distance = float(data[1])
@@ -80,7 +84,7 @@ def validate_workout_data(data):
     except ValueError:
         print("Invalid distance. Please enter a valid number.")
         return False
-    
+
     # Validate duration format (h:mm)
     duration_parts = data[2].split(":")
     if len(duration_parts) != 2:
@@ -97,6 +101,7 @@ def validate_workout_data(data):
 
     return True
 
+
 def update_workout(data):
     """
     Update the workout log with the provided data.
@@ -105,6 +110,7 @@ def update_workout(data):
     worksheet = SHEET.worksheet("workout")
     worksheet.append_row(data)
     print("Workout log updated successfully.")
+
 
 def calculate_progress():
     """
@@ -143,6 +149,7 @@ def calculate_progress():
 
     return grouped_data
 
+
 def update_progress():
     """
     Update the progress sheet with the calculated progress for each month.
@@ -165,6 +172,7 @@ def update_progress():
 
     print("Progress sheet updated successfully.")
 
+
 def display_workout_logs(data):
     """
     Display workout logs along with a brief description.
@@ -184,18 +192,18 @@ def display_workout_logs(data):
     else:
         print("No workout logs available.")
 
-    print("\nWhat would you like to do next?")
-    print("1. Back to main menu")
-    print("2. Exit")
-    choice = input("Enter your choice (1 or 2): ")
+    while True:
+        print("\nWhat would you like to do next?")
+        print("1. Back to main menu")
+        print("2. Exit")
+        choice = input("Enter your choice (1 or 2): ")
 
-    if choice == '1':
-        return 'main_menu'
-    elif choice == '2':
-        return 'exit'
-    else:
-        print("Invalid choice. Returning to main menu.")
-        return 'main_menu'
+        if choice == '1':
+            return 'main_menu'
+        elif choice == '2':
+            return 'exit'
+        else:
+            print("Invalid choice. Please enter either 1 or 2.")
 
 
 def display_progress(data):
@@ -217,18 +225,19 @@ def display_progress(data):
     else:
         print("No progress data available.")
 
-    print("\nWhat would you like to do next?")
-    print("1. Back to main menu")
-    print("2. Exit")
-    choice = input("Enter your choice (1 or 2): ")
+    while True:
+        print("\nWhat would you like to do next?")
+        print("1. Back to main menu")
+        print("2. Exit")
+        choice = input("Enter your choice (1 or 2): ")
 
-    if choice == '1':
-        return 'main_menu'
-    elif choice == '2':
-        return 'exit'
-    else:
-        print("Invalid choice. Returning to main menu.")
-        return 'main_menu'
+        if choice == '1':
+            return 'main_menu'
+        elif choice == '2':
+            return 'exit'
+        else:
+            print("Invalid choice. Please enter either 1 or 2.")
+
 
 def print_menu():
     """
@@ -239,6 +248,7 @@ def print_menu():
     print("2. View workout logs")
     print("3. View progress")
     print("4. Exit")
+
 
 def main():
     """
@@ -282,6 +292,7 @@ def main():
             print("Invalid choice. Please choose 1, 2, 3, or 4.")
 
         print()  # Add a newline before the main menu
+
 
 if __name__ == '__main__':
     main()
