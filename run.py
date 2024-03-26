@@ -1,7 +1,7 @@
 import gspread
 from google.oauth2.service_account import Credentials
 from datetime import datetime
-from collections import defaultdict  # Import defaultdict from collections module
+from collections import defaultdict  
 import prettytable
 
 # Google Sheets setup
@@ -16,7 +16,6 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('fitness_tracker')
 
-# Define view_workout_logs function
 def view_workout_logs():
     """
     View workout logs from the terminal.
@@ -28,7 +27,6 @@ def view_workout_logs():
         print(", ".join(row))  # Print each row of workout data
     print("\n")
 
-# Define view_progress function
 def view_progress():
     """
     View progress from the terminal.
@@ -59,7 +57,6 @@ def get_workout_data():
 
     return workout_data
 
-# Modify validate_workout_data function to validate duration format as 'h:mm'
 def validate_workout_data(data):
     """
     Validate workout data input.
@@ -100,7 +97,6 @@ def validate_workout_data(data):
 
     return True
 
-# Define update_workout function
 def update_workout(data):
     """
     Update the workout log with the provided data.
@@ -110,7 +106,6 @@ def update_workout(data):
     worksheet.append_row(data)
     print("Workout log updated successfully.\n")
 
-# Define calculate_progress function
 def calculate_progress():
     """
     Calculate progress based on the workout data collected over time.
@@ -148,7 +143,6 @@ def calculate_progress():
 
     return grouped_data
 
-# Define update progress function
 def update_progress():
     """
     Update the progress sheet with the calculated progress for each month.
@@ -172,17 +166,29 @@ def update_progress():
     print("Progress sheet updated successfully.\n")
 
 def display_workout_logs(data):
+    """
+    Display workout logs along with a brief description.
+    """
+    print("Workout Logs:")
+    print("Date: The date of the workout.")
+    print("Distance (km): The distance covered during the workout, in kilometers.")
+    print("Duration (hh:mm): The duration of the workout, in hours and minutes.")
     table = prettytable.PrettyTable(["Date", "Distance (km)", "Duration (hh:mm)"])
     for row in data[1:]:
         table.add_row(row)
-    print("Workout Logs:")
     print(table)
 
 def display_progress(data):
+    """
+    Display progress along with a brief description.
+    """
+    print("Progress:")
+    print("Month: The month for which progress is calculated.")
+    print("Total Distance (km): The total distance covered in the month, in kilometers.")
+    print("Average Pace (mm:ss): The average pace for the month, in minutes and seconds per kilometer.")
     table = prettytable.PrettyTable(["Month", "Total Distance (km)", "Average Pace (mm:ss)"])
     for month, info in data.items():
         table.add_row([month, info["distance"], info["average_pace"]])
-    print("Progress:")
     print(table)
 
 def print_menu():
