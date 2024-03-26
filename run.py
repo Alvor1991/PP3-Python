@@ -171,7 +171,6 @@ def update_progress():
 
     print("Progress sheet updated successfully.\n")
 
-# Define display_workout_logs function
 def display_workout_logs(data):
     table = prettytable.PrettyTable(["Date", "Distance (km)", "Duration (hh:mm)"])
     for row in data[1:]:
@@ -179,7 +178,6 @@ def display_workout_logs(data):
     print("Workout Logs:")
     print(table)
 
-# Define display_progress function
 def display_progress(data):
     table = prettytable.PrettyTable(["Month", "Total Distance (km)", "Average Pace (mm:ss)"])
     for month, info in data.items():
@@ -187,30 +185,53 @@ def display_progress(data):
     print("Progress:")
     print(table)
 
-# Main function
+def print_menu():
+    """
+    Print the main menu options.
+    """
+    print("Main Menu:")
+    print("1. Enter workout data")
+    print("2. View workout logs")
+    print("3. View progress")
+
 def main():
     """
     Main function to run the marathon tracker app.
     """
     print("Welcome to the Marathon Tracker App. The Fitness Tracker is a specialized application designed to assist me in training for a Marathon. It offers one feature to log my workout and another feature to track my progress each month. \n")
-    print("Choose an option:")
-    print("1. Enter workout data")
-    print("2. View workout logs")
-    print("3. View progress")
-    choice = input("Enter your choice (1, 2, or 3): ")
+    
+    while True:
+        print_menu()
+        choice = input("Enter your choice (1, 2, or 3): ")
 
-    if choice == '1':
-        workout_data = get_workout_data()
-        update_workout(workout_data)
-        update_progress()
-    elif choice == '2':
-        data = SHEET.worksheet("workout").get_all_values()
-        display_workout_logs(data)
-    elif choice == '3':
-        progress_data = calculate_progress()
-        display_progress(progress_data)
-    else:
-        print("Invalid choice. Please choose 1, 2, or 3.")
+        if choice == '1':
+            workout_data = get_workout_data()
+            update_workout(workout_data)
+            update_progress()
+
+            # Additional navigation options after entering a workout
+            while True:
+                print("\nWhat would you like to do next?")
+                print("1. Enter another workout")
+                print("2. Back to main menu")
+                next_choice = input("Enter your choice (1 or 2): ")
+                if next_choice == '1':
+                    workout_data = get_workout_data()
+                    update_workout(workout_data)
+                    update_progress()
+                elif next_choice == '2':
+                    break
+                else:
+                    print("Invalid choice. Please choose 1 or 2.")
+
+        elif choice == '2':
+            data = SHEET.worksheet("workout").get_all_values()
+            display_workout_logs(data)
+        elif choice == '3':
+            progress_data = calculate_progress()
+            display_progress(progress_data)
+        else:
+            print("Invalid choice. Please choose 1, 2, or 3.")
 
 if __name__ == '__main__':
     main()
