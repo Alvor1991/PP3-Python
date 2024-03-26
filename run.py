@@ -184,6 +184,20 @@ def display_workout_logs(data):
     else:
         print("No workout logs available.")
 
+    print("\nWhat would you like to do next?")
+    print("1. Back to main menu")
+    print("2. Exit")
+    choice = input("Enter your choice (1 or 2): ")
+
+    if choice == '1':
+        return 'main_menu'
+    elif choice == '2':
+        return 'exit'
+    else:
+        print("Invalid choice. Returning to main menu.")
+        return 'main_menu'
+
+
 def display_progress(data):
     """
     Display progress along with a brief description.
@@ -202,6 +216,19 @@ def display_progress(data):
         print()  # Add a single newline below the table
     else:
         print("No progress data available.")
+
+    print("\nWhat would you like to do next?")
+    print("1. Back to main menu")
+    print("2. Exit")
+    choice = input("Enter your choice (1 or 2): ")
+
+    if choice == '1':
+        return 'main_menu'
+    elif choice == '2':
+        return 'exit'
+    else:
+        print("Invalid choice. Returning to main menu.")
+        return 'main_menu'
 
 def print_menu():
     """
