@@ -73,7 +73,9 @@ def validate_workout_data(data):
     try:
         workout_date = datetime.strptime(data[0].strip(), "%d %B")
     except ValueError:
-        print("Invalid workout date format. Please use Day Month format (e.g., 3 March).")
+        print("Invalid workout date format. Please use Day Month format")
+        print("(e.g., 3 March).")
+
         return False
 
     # Validate distance (should be a positive number)
@@ -96,7 +98,9 @@ def validate_workout_data(data):
         if hours < 0 or minutes < 0 or minutes >= 60:
             raise ValueError("Invalid duration values.")
     except ValueError:
-        print("Invalid duration values. Please use positive integers for hours and minutes.")
+        print("Invalid duration values. Please use positive integers for " +
+              "hours and minutes.")
+
         return False
 
     return True
@@ -118,9 +122,13 @@ def calculate_progress():
     """
     worksheet = SHEET.worksheet("workout")
     data = worksheet.get_all_values()[1:]  # Skipping header row
-    grouped_data = defaultdict(lambda: {"distance": 0, "duration": [], "count": 0})
+    grouped_data = defaultdict(lambda: {
+        "distance": 0,
+        "duration": [],
+        "count": 0
+    })
 
-    # Group data by month and calculate total distance and duration for each month
+    # Group data by month and calculate total distance
     for row in data:
         date_str = row[0].strip()
         # Adjust date string to include the day if only month is provided
@@ -137,15 +145,26 @@ def calculate_progress():
     # Calculate average pace for each month
     for month, info in grouped_data.items():
         durations = info["duration"]
-        total_duration_minutes = sum(int(d.split(":")[0]) * 60 + int(d.split(":")[1]) for d in durations)
+        total_duration_minutes = sum(
+            int(d.split(":")[0]) * 60 + int(d.split(":")[1]) for d in
+            durations
+            )
+
         total_distance = info["distance"]
         if total_duration_minutes == 0 or total_distance == 0:
             grouped_data[month]["average_pace"] = "N/A"
         else:
-            average_pace_minutes_per_km = total_duration_minutes / total_distance
+            average_pace_minutes_per_km = (
+                total_duration_minutes / total_distance
+                )
+
             average_pace_minutes = int(average_pace_minutes_per_km)
-            average_pace_seconds = int((average_pace_minutes_per_km - average_pace_minutes) * 60)
-            grouped_data[month]["average_pace"] = f"{average_pace_minutes:02}:{average_pace_seconds:02}"
+            average_pace_seconds = int(
+                (average_pace_minutes_per_km - average_pace_minutes) * 60
+                )
+            grouped_data[month]["average_pace"] = (
+                f"{average_pace_minutes:02}:{average_pace_seconds:02}"
+            )
 
     return grouped_data
 
@@ -165,8 +184,8 @@ def update_progress():
         month_cells = worksheet.findall(month)
         if month_cells:
             row_index = month_cells[0].row
-            worksheet.update_cell(row_index, 2, info["distance"])  # Update total distance
-            worksheet.update_cell(row_index, 3, info["average_pace"])  # Update average pace
+            worksheet.update_cell(row_index, 2, info["distance"])
+            worksheet.update_cell(row_index, 3, info["average_pace"])
         else:
             print(f"Error: Month {month} not found in progress sheet.")
 
@@ -179,12 +198,18 @@ def display_workout_logs(data):
     """
     print("\nWorkout Logs:")
     print("Date: The date of the workout.")
-    print("Distance (km): The distance covered during the workout, in kilometers.")
-    print("Duration (hh:mm): The duration of the workout, in hours and minutes.")
+    print("Distance (km): The distance covered during "
+          "the workout, in kilometers.")
+    print("Duration (hh:mm): The duration of the workout, "
+          "in hours and minutes.")
 
     if len(data) > 1:
         print("\n")  # Add a newline above the table
-        table = prettytable.PrettyTable(["Date", "Distance (km)", "Duration (hh:mm)"])
+        table = prettytable.PrettyTable([
+            "Date",
+            "Distance (km)",
+            "Duration (hh:mm)"
+            ])
         for row in data[1:]:
             table.add_row(row)
         print(table)
@@ -212,12 +237,18 @@ def display_progress(data):
     """
     print("\nProgress:")
     print("Month: The month for which progress is calculated.")
-    print("Total Distance (km): The total distance covered in the month, in kilometers.")
-    print("Average Pace (mm:ss): The average pace for the month, in minutes and seconds per kilometer.")
+    print("Total Distance (km): The total distance covered "
+          "in the month, in kilometers.")
+    print("Average Pace (mm:ss): The average pace for the month, "
+          "in minutes and seconds per kilometer.")
 
     if data:
         print("\n")  # Add a newline above the table
-        table = prettytable.PrettyTable(["Month", "Total Distance (km)", "Average Pace (mm:ss)"])
+        table = prettytable.PrettyTable([
+            "Month",
+            "Total Distance (km)",
+            "Average Pace (mm:ss)"
+            ])
         for month, info in data.items():
             table.add_row([month, info["distance"], info["average_pace"]])
         print(table)
@@ -254,7 +285,10 @@ def main():
     """
     Main function to run the marathon tracker app.
     """
-    print("Welcome to the Marathon Tracker App. The Fitness Tracker is a specialized application designed to assist me in training for a Marathon.\n")
+    print("Welcome to the Marathon Tracker App. "
+          "The Fitness Tracker is a specialized "
+          "application designed to assist me in "
+          "training for a Marathon.\n")
 
     while True:
         print_menu()
