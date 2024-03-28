@@ -262,43 +262,24 @@ The [PEP8 online check](https://pep8ci.herokuapp.com/#) was used continuosly dur
         <td>Fail</td>
     </tr>
     <tr>
-        <td rowspan=2>Distance</td>
-        <td>Ensures the distance entered is a positive number</td>
-        <td><img src=assets/readme-files/sex-empty.png alt="Sex value is empty"></td>
+        <td rowspan=2>Workout Date Format</td>
+        <td>Validates the workout date format (Day Month).</td>
+        <td><img src=assets/readme-files/age-empty.png alt="Age value is empty"></td>
         <td>Pass</td>
+    </tr>
+        <td>Validates the workout date format (Day Month).</td>
+        <td><img src=assets/readme-files/age-low.png alt="Age value is too low"></td>
+        <td>Fail</td>
     </tr>
     <tr>
-        <td>Validate if invalid value</td>
-        <td><img src=assets/readme-files/sex-invalid.png alt="Sex value is invalid"></td>
+        <td rowspan=2>Workout Date Format</td>
+        <td>Validates the workout date format (Day Month).</td>
+        <td><img src=assets/readme-files/age-empty.png alt="Age value is empty"></td>
         <td>Pass</td>
     </tr>
-        <tr>
-        <td>Duration Format</td>
-        <td>Validate if value is empty</td>
-        <td><img src=assets/readme-files/unit-empty.png alt="Unit value is empty"></td>
-        <td>Pass</td>
-    </tr>
-    <tr>
-        <td rowspan=2>Duration Format</td>
-        <td rowspan=2>Validate if value is empty</td>
-        <td><img src=assets/readme-files/weight-kg-empty.png alt="Weight in kg value is empty"></td>
-        <td rowspan=2>Pass</td>
-    </tr>
-    <tr>
-        <td>Validate if invalid value</td>
-        <td><img src=assets/readme-files/activity-level-invalid.png alt="Activity level value is invalid"></td>
-        <td>Pass</td>
-    </tr>
-    <tr>
-        <td rowspan=2>Empty Input</td>
-        <td>Validate if value is empty</td>
-        <td><img src=assets/readme-files/goal-empty.png alt="Goal value is empty"></td>
-        <td>Pass</td>
-    </tr>
-    <tr>
-        <td>Validate if invalid value</td>
-        <td><img src=assets/readme-files/goal-invalid.png alt="Goal value is invalid"></td>
-        <td>Pass</td>
+        <td>Validates the workout date format (Day Month).</td>
+        <td><img src=assets/readme-files/age-low.png alt="Age value is too low"></td>
+        <td>Fail</td>
     </tr>
 </table>
 
