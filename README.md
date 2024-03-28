@@ -279,43 +279,10 @@ The [PEP8 online check](https://pep8ci.herokuapp.com/#) was used continuosly dur
         <td>Pass</td>
     </tr>
     <tr>
-        <td rowspan=8>Duration Format</td>
+        <td rowspan=2>Duration Format</td>
         <td rowspan=2>Validate if value is empty</td>
         <td><img src=assets/readme-files/weight-kg-empty.png alt="Weight in kg value is empty"></td>
         <td rowspan=2>Pass</td>
-    </tr>
-    <tr>
-        <td><img src=assets/readme-files/weight-lb-empty.png alt="Weight in lb value is empty"></td>
-    </tr>
-    <tr>
-        <td><img src=assets/readme-files/height-inch-empty.png alt="Height in inch value is empty"></td>
-    </tr>
-    </tr>
-        <td rowspan=2>Validate if value is too low</td>
-        <td><img src=assets/readme-files/height-cm-low.png alt="Height in cm value is too low"></td>
-        <td rowspan=2>Pass</td>
-    </tr>
-    </tr>
-        <td rowspan=2>Validate if value is too high</td>
-        <td><img src=assets/readme-files/height-cm-high.png alt="Height in cm value is too high"></td>
-        <td rowspan=2>Pass</td>
-    </tr>
-    <tr>
-        <td><img src=assets/readme-files/height-inch-high.png alt="Height in inch value is too high"></td>
-    </tr>
-    <tr>
-        <td rowspan=2>Validate if value is not an integer</td>
-        <td><img src=assets/readme-files/height-cm-not-int.png alt="Height in cm value not an integer"></td>
-        <td rowspan=2>Pass</td>
-    </tr>
-    <tr>
-        <td><img src=assets/readme-files/height-inch-not-int.png alt="height in inch value not an integer"></td>
-    </tr>
-    <tr>
-        <td rowspan=2>Duration Values</td>
-        <td>Validate if value is empty</td>
-        <td><img src=assets/readme-files/activity-level-empty.png alt="Activity level value is empty"></td>
-        <td>Pass</td>
     </tr>
     <tr>
         <td>Validate if invalid value</td>
