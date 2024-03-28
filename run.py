@@ -270,7 +270,7 @@ def display_progress(data):
     else:
         print("No progress data available.")
         return 'main_menu'
-    
+
 
 def print_menu():
     """
@@ -327,4 +327,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
