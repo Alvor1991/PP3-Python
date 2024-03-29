@@ -3,6 +3,9 @@ from google.oauth2.service_account import Credentials
 from datetime import datetime
 from collections import defaultdict
 import prettytable
+from colorama import init, Fore, Style
+init(autoreset=True)
+
 
 # Google Sheets setup
 SCOPE = [
@@ -47,7 +50,7 @@ def get_workout_data():
     Run a loop to collect valid data from the user via the terminal.
     """
     while True:
-        print("\nEnter workout details:")
+        print(Fore.LIGHTCYAN_EX + "\nEnter workout details:")
         print("Format: [Day] [Month], Distance (km), Duration (h:mm)")
         print("Example: 3 March, 20, 1:30")
 
@@ -66,7 +69,7 @@ def validate_workout_data(data):
     Validate workout data input.
     """
     if len(data) != 3:
-        print("Invalid data: Exactly 3 values required.")
+        print(Fore.RED + "Invalid data: Exactly 3 values required.")
         return False
 
     # Validate workout date format (Day Month)
@@ -84,21 +87,21 @@ def validate_workout_data(data):
         if distance <= 0:
             raise ValueError("Distance must be a positive number.")
     except ValueError:
-        print("Invalid distance. Please enter a valid number.")
+        print(Fore.RED + "Invalid distance. Please enter a valid number.")
         return False
 
     # Validate duration format (h:mm)
     duration_parts = data[2].split(":")
     if len(duration_parts) != 2:
-        print("Invalid duration format. Please use h:mm format.")
+        print(Fore.RED + "Invalid duration format. Please use h:mm format.")
         return False
     try:
         hours = int(duration_parts[0])
         minutes = int(duration_parts[1])
         if hours < 0 or minutes < 0 or minutes >= 60:
-            raise ValueError("Invalid duration values.")
+            raise ValueError(Fore.RED + "Invalid duration values.")
     except ValueError:
-        print("Invalid duration values. Please use positive integers for " +
+        print(Fore.RED + "Invalid duration values. Please use positive integers for " +
               "hours and minutes.")
 
         return False
@@ -113,7 +116,7 @@ def update_workout(data):
     print("\nUpdating workout log...")
     worksheet = SHEET.worksheet("workout")
     worksheet.append_row(data)
-    print("Workout log updated successfully.")
+    print(Fore.GREEN + "Workout log updated successfully.")
 
 
 def calculate_progress():
@@ -189,14 +192,14 @@ def update_progress():
         else:
             print(f"Error: Month {month} not found in progress sheet.")
 
-    print("Progress sheet updated successfully.")
+    print(Fore.GREEN + "Progress sheet updated successfully.")
 
 
 def display_workout_logs(data):
     """
     Display workout logs along with a brief description.
     """
-    print("\nWorkout Logs:")
+    print("\nHere is your workout data:")
     print("Date: The date of the workout.")
     print("Distance (km): The distance covered during "
           "the workout, in kilometers.")
@@ -220,13 +223,14 @@ def display_workout_logs(data):
             print("1. Back to main menu")
             print("2. Exit")
             choice = input("Enter your choice (1 or 2): ")
+            print()
 
             if choice == '1':
                 return 'main_menu'
             elif choice == '2':
                 return 'exit'
             else:
-                print("Invalid choice. Please enter either 1 or 2.")
+                print(Fore.RED + "Invalid choice. Please enter either 1 or 2.")
     else:
         print("No workout logs available.")
         return 'main_menu'
@@ -236,7 +240,7 @@ def display_progress(data):
     """
     Display progress along with a brief description.
     """
-    print("\nProgress:")
+    print("\nHere is your progress information:")
     print("Month: The month for which progress is calculated.")
     print("Total Distance (km): The total distance covered "
           "in the month, in kilometers.")
@@ -260,13 +264,14 @@ def display_progress(data):
             print("1. Back to main menu")
             print("2. Exit")
             choice = input("Enter your choice (1 or 2): ")
+            print()
 
             if choice == '1':
                 return 'main_menu'
             elif choice == '2':
                 return 'exit'
             else:
-                print("Invalid choice. Please enter either 1 or 2.")
+                print(Fore.RED + "Invalid choice. Please enter either 1 or 2.")
     else:
         print("No progress data available.")
         return 'main_menu'
@@ -276,7 +281,7 @@ def print_menu():
     """
     Print the main menu options.
     """
-    print("Main Menu:")
+    print(Fore.LIGHTCYAN_EX + "Main Menu:")
     print("1. Enter workout data")
     print("2. View workout logs")
     print("3. View progress")
@@ -285,9 +290,9 @@ def print_menu():
 
 def main():
     """
-    Main function to run the marathon tracker app.
+    Main function to run the fitness tracker app.
     """
-    print("Welcome to the Marathon Tracker App. "
+    print("Welcome to the Fitness Tracker App. "
           "The Fitness Tracker is a specialized "
           "application designed to assist me in "
           "training for a Marathon.\n")
@@ -295,6 +300,7 @@ def main():
     while True:
         print_menu()
         choice = input("\nEnter your choice (1, 2, 3, or 4): ")
+        print()
 
         if choice == '1':
             workout_data = get_workout_data()
@@ -305,18 +311,18 @@ def main():
             data = SHEET.worksheet("workout").get_all_values()
             action = display_workout_logs(data)
             if action == 'exit':
-                print("Exiting the Marathon Tracker App. Goodbye!")
+                print("Exiting the Fitness Tracker App. Goodbye!")
                 break
 
         elif choice == '3':
             progress_data = calculate_progress()
             action = display_progress(progress_data)
             if action == 'exit':
-                print("Exiting the Marathon Tracker App. Goodbye!")
+                print("Exiting the Fitness Tracker App. Goodbye!")
                 break
 
         elif choice == '4':
-            print("Exiting the Marathon Tracker App. Goodbye!")
+            print("Exiting the Fitness Tracker App. Goodbye!")
             break
 
         else:
