@@ -76,7 +76,7 @@ def validate_workout_data(data):
     try:
         workout_date = datetime.strptime(data[0].strip(), "%d %B")
     except ValueError:
-        print("Invalid workout date format. Please use Day Month format")
+        print(Fore.RED + "Invalid workout date format. Please use Day Month format")
         print("(e.g., 3 March).")
 
         return False
@@ -326,7 +326,7 @@ def main():
             break
 
         else:
-            print("Invalid choice. Please choose 1, 2, 3, or 4.")
+            print(Fore.RED + "Invalid choice. Please choose 1, 2, 3, or 4.")
 
         print()  # Add a newline before the main menu
 
