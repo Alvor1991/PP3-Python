@@ -200,7 +200,7 @@ def display_workout_logs(data):
     print("Date: The date of the workout.")
     print("Distance (km): The distance covered during "
           "the workout, in kilometers.")
-    print("Duration (hh:mm): The duration of the workout, "
+    print("Duration (h:mm): The duration of the workout, "
           "in hours and minutes.")
 
     if len(data) > 1:
@@ -208,7 +208,7 @@ def display_workout_logs(data):
         table = prettytable.PrettyTable([
             "Date",
             "Distance (km)",
-            "Duration (hh:mm)"
+            "Duration (h:mm)"
             ])
         for row in data[1:]:
             table.add_row(row)

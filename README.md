@@ -172,13 +172,23 @@ A confirmation message is displayed before exiting the program, ensuring users i
 
 ![Confirmation Prompt](assets/readme-files/diet.png)
 
-Month | Distance | Duration
+Date | Distance (km) | Duration (h:mm)
 ---|---|---
-September | 20 | 1.30
-September | 20 | 1.30
-September | 20 | 1.30
-September | 20 | 1.30
-September | 20 | 1.30
+5 January | 5 | 0:40
+10 January | 10 | 1:30
+15 February | 5 | 0:35
+20 February | 10 | 1:20
+25 March | 5 | 0:30
+31 March | 10 | 1:10
+
+Month | Total Distance (km) | Average Pace (mm:ss)
+---|---|---
+January  | 15 | 0:25
+January  | 15 | 0:25
+February  | 15 | 0:25
+February  | 15 | 0:25
+March  | 15 | 0:25
+March  | 15 | 0:25
 
 ### Continuous Operation
 
