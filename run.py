@@ -58,7 +58,7 @@ def get_workout_data():
         workout_data = data_str.split(",")
 
         if validate_workout_data(workout_data):
-            print("Workout data is valid!")
+            print(Fore.GREEN + "Workout data is valid!")
             break
 
     return workout_data
@@ -77,7 +77,7 @@ def validate_workout_data(data):
         workout_date = datetime.strptime(data[0].strip(), "%d %B")
     except ValueError:
         print(Fore.RED + "Invalid workout date format. Please use Day Month format")
-        print("(e.g., 3 March).")
+        print(Fore.RED + "(e.g., 3 March).")
         return False
 
     # Validate distance (should be a positive number)
@@ -98,7 +98,7 @@ def validate_workout_data(data):
         hours = int(duration_parts[0])
         minutes = int(duration_parts[1])
         if hours < 0 or minutes < 0 or minutes >= 60:
-            raise ValueError(Fore.RED + "Invalid duration values.")
+            raise ValueError(Fore.RED + "Invalid duration. Minutes must be between 0 and 59")
         # Ensure minutes are in 2-digit format
         if len(duration_parts[1]) != 2:
             raise ValueError(Fore.RED + "Minutes should be in 2-digit format.")
@@ -242,10 +242,10 @@ def display_progress(data):
     """
     print(Fore.LIGHTCYAN_EX + "\nHere is your progress information:")
     print("Month: The month for which progress is calculated.")
-    print("Total Distance (km): The total distance covered "
+    print("Total Distance (km): Total distance covered "
           "in the month, in kilometers.")
-    print("Average Pace (mm:ss): The average pace for the month, "
-          "in minutes and seconds per kilometer.")
+    print("Average Pace (mm:ss): Average pace for the month, "
+          "in minutes & seconds per kilometer.")
 
     if data:
         print("\n")  # Add a newline above the table
@@ -293,7 +293,7 @@ def main():
     Main function to run the fitness tracker app.
     """
     print(Fore.LIGHTCYAN_EX + "Welcome to the Fitness Tracker App!\n")
-    print("The Fitness Tracker serves app serves as my dedicated tool for logging workouts, "
+    print("The Fitness Tracker serves app serves as my dedicated tool for logging workouts,"
           "tracking progress, and staying motivated as I prepare for my upcoming marathon.\n")
 
     while True:
