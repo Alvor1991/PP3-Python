@@ -249,23 +249,13 @@ The [PEP8 online check](https://pep8ci.herokuapp.com/#) was used continuosly dur
     <tr>
         <td rowspan=2>Workout Date Format</td>
         <td>Validates the workout date format (Day Month).</td>
-        <td><img src=assets/readme-files/age-empty.png alt="Age value is empty"></td>
+        <td><img src=assets/readme-files/workout-date.png alt="Age value is empty"></td>
         <td>Pass</td>
-    </tr>
-        <td>Validates the workout date format (Day Month).</td>
-        <td><img src=assets/readme-files/age-low.png alt="Age value is too low"></td>
-        <td>Pass</td>
-    </tr>
     <tr>
         <td rowspan=2>Distance Validation</td>
         <td>Validates that the distance entered is a positive number.</td>
         <td><img src=assets/readme-files/age-empty.png alt="Age value is empty"></td>
         <td>Pass</td>
-    </tr>
-        <td>Validates the workout date format (Day Month).</td>
-        <td><img src=assets/readme-files/age-low.png alt="Age value is too low"></td>
-        <td>Pass</td>
-    </tr>
     <tr>
         <td rowspan=4>Duration Format</td>
         <td>Validates that the duration follows the format "h:mm" (hours:minutes).</td>
@@ -273,7 +263,7 @@ The [PEP8 online check](https://pep8ci.herokuapp.com/#) was used continuosly dur
         <td>Pass</td>
     </tr>
         <td>Validates that the hours are between 0 and 9 (inclusive).</td>
-        <td><img src=assets/readme-files/age-low.png alt="Age value is too low"></td>
+        <td><img src=assets/readme-files/hours-invalid.png alt="Age value is too low"></td>
         <td>Pass</td>
     </tr>
     </tr>
