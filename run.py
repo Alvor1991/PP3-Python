@@ -78,7 +78,6 @@ def validate_workout_data(data):
     except ValueError:
         print(Fore.RED + "Invalid workout date format. Please use Day Month format")
         print("(e.g., 3 March).")
-
         return False
 
     # Validate distance (should be a positive number)
@@ -100,10 +99,11 @@ def validate_workout_data(data):
         minutes = int(duration_parts[1])
         if hours < 0 or minutes < 0 or minutes >= 60:
             raise ValueError(Fore.RED + "Invalid duration values.")
-    except ValueError:
-        print(Fore.RED + "Invalid duration values. Please use positive integers for " +
-              "hours and minutes.")
-
+        # Ensure minutes are in 2-digit format
+        if len(duration_parts[1]) != 2:
+            raise ValueError(Fore.RED + "Minutes should be in 2-digit format.")
+    except ValueError as e:
+        print(e)
         return False
 
     return True
@@ -199,7 +199,7 @@ def display_workout_logs(data):
     """
     Display workout logs along with a brief description.
     """
-    print("\nHere is your workout data:")
+    print(Fore.LIGHTCYAN_EX + "\nHere is your workout data:")
     print("Date: The date of the workout.")
     print("Distance (km): The distance covered during "
           "the workout, in kilometers.")
@@ -219,7 +219,7 @@ def display_workout_logs(data):
         print()  # Add a single newline below the table
 
         while True:
-            print("\nWhat would you like to do next?")
+            print(Fore.LIGHTCYAN_EX + "\nWhat would you like to do next?")
             print("1. Back to main menu")
             print("2. Exit")
             choice = input("Enter your choice (1 or 2): ")
@@ -240,7 +240,7 @@ def display_progress(data):
     """
     Display progress along with a brief description.
     """
-    print("\nHere is your progress information:")
+    print(Fore.LIGHTCYAN_EX + "\nHere is your progress information:")
     print("Month: The month for which progress is calculated.")
     print("Total Distance (km): The total distance covered "
           "in the month, in kilometers.")
@@ -260,7 +260,7 @@ def display_progress(data):
         print()  # Add a single newline below the table
 
         while True:
-            print("\nWhat would you like to do next?")
+            print(Fore.LIGHTCYAN_EX + "\nWhat would you like to do next?")
             print("1. Back to main menu")
             print("2. Exit")
             choice = input("Enter your choice (1 or 2): ")
@@ -292,10 +292,9 @@ def main():
     """
     Main function to run the fitness tracker app.
     """
-    print("Welcome to the Fitness Tracker App. "
-          "The Fitness Tracker is a specialized "
-          "application designed to assist me in "
-          "training for a Marathon.\n")
+    print(Fore.LIGHTCYAN_EX + "Welcome to the Fitness Tracker App!\n")
+    print("The Fitness Tracker serves app serves as my dedicated tool for logging workouts, "
+          "tracking progress, and staying motivated as I prepare for my upcoming marathon.\n")
 
     while True:
         print_menu()
