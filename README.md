@@ -1,12 +1,12 @@
 # Fitness Tracker
 
-![Fitness Tracker mockup image](assets/readme-files/mockup-image.png)
+![Fitness Tracker mockup image](assets/readme-files/welcome.png)
 
 The Fitness Tracker is a personalized application designed to streamline my marathon training journey. Developed with simplicity and functionality in mind, this tracker serves as my dedicated tool for logging workouts, tracking progress, and staying motivated as I prepare for my upcoming marathon.
 
 The Fitness Tracker utilizes Google Sheets as a central repository for storing workout logs and tracking progress data. The gspread library is integrated into the application to enable seamless interaction with Google Sheets, allowing for real-time updates and easy access to training data.
 
-Visit the deployed application [here](https://macro-calculator.onrender.com).
+Visit the deployed application [here](https://marathon-tracker-3c8498abb267.herokuapp.com/).
 
 ## Table of Contents
 1. [User Experience (UX)](#user-experience-UX)
@@ -230,7 +230,7 @@ The [PEP8 online check](https://pep8ci.herokuapp.com/#) was used continuosly dur
         <th>Outcome</th>
         <th>Example</th>
         <th>Pass/Fail</th>
-    </tr> 
+    </tr>
     <tr>
         <td rowspan=2>Menu Format</td>
         <td>Validates that input for the main menu choice is one of the valid options: 1, 2, 3, or 4.</td>
@@ -242,19 +242,24 @@ The [PEP8 online check](https://pep8ci.herokuapp.com/#) was used continuosly dur
         <td>Pass</td>
     </tr>   
     <tr>
-        <td>Data Entry</td>
-        <td>Ensures that exactly 3 values are entered for each workout: day, month, distance, and duration.</td>
-        <td><img src=assets/readme-files/values-invalid.png alt="Age value is empty"></td>
+        <td rowspan=2>Data Entry Values</td>
+        <td>Validates that exactly 3 values have been entered correclty each workout: day, month, distance, and duration.</td>
+        <td><img src=assets/readme-files/valid-workout.png alt="Age value is empty"></td>
         <td>Pass</td>
+    </tr>
+        <td>Validates that exactly 3 values have been not been entered correclty.</td>
+        <td><img src=assets/readme-files/hours-invalid.png alt="Age value is too low"></td>
+        <td>Pass</td>
+    </tr>
     <tr>
         <td rowspan=2>Workout Date Format</td>
         <td>Validates the workout date format (Day Month).</td>
         <td><img src=assets/readme-files/workout-date.png alt="Age value is empty"></td>
         <td>Pass</td>
     <tr>
-        <td rowspan=2>Distance Validation</td>
+        <td>Distance Validation</td>
         <td>Validates that the distance entered is a positive number.</td>
-        <td><img src=assets/readme-files/age-empty.png alt="Age value is empty"></td>
+        <td><img src=assets/readme-files/distance-positive.png alt="Age value is empty"></td>
         <td>Pass</td>
     <tr>
         <td rowspan=4>Duration Format</td>
@@ -272,7 +277,7 @@ The [PEP8 online check](https://pep8ci.herokuapp.com/#) was used continuosly dur
         <td>Pass</td>
     </tr>
     </tr>
-        <td>Ensures that the minutes are in a 2-digit format.</td>
+        <td>Validates that the minutes are in a 2-digit format.</td>
         <td><img src=assets/readme-files/two-digit-invalid.png alt="Age value is too low"></td>
         <td>Pass</td>
     </tr>
