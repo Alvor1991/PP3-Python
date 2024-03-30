@@ -98,7 +98,7 @@ The program's logic utilizes conditionals and loops to facilitate user interacti
 
 Users can enter workout details including the date, distance (in kilometers), and duration (in hours and minutes).
 
-![User Input](assets/readme-files/system-of-measurement.png)
+![User Input](assets/readme-files/enter-workout.png)
 
 #### Input Validation
 
@@ -114,63 +114,45 @@ Error Handling: Clear error messages are displayed if invalid input is provided,
 
 ### View Workout Logs
 
-#### Display Logs
+#### Structured Display
 
 Users can view their workout logs directly from the terminal.
 
-![Display Logs](assets/readme-files/system-of-measurement.png)
-
-#### Structured Display
-
 Workout logs are displayed in a structured format including the date, distance, and duration of each workout.
 
-![Structured Display](assets/readme-files/system-of-measurement.png)
+![Display Logs](assets/readme-files/workout-table.png)
 
 #### Navigation Options
 
 Users can choose to go back to the main menu or exit the program after viewing workout logs.
 
-![Navigation Options](assets/readme-files/activity-level.png)
+![Navigation Options](assets/readme-files/sub-menu.png)
 
 ### View Progress
 
-#### Display Progress
+#### Structured Display
 
-Users can monitor their progress over time, including total distance covered and average pace.
+Users can view their progress directly from the terminal.
 
-![Display Progress](assets/readme-files/system-of-measurement.png)
-
-#### Automated Calculation
+Progress is displayed in a structured format including the month, total distance and average pace. 
 
 Progress data is automatically calculated based on the workout data collected.
 
-![Automated Calculation](assets/readme-files/system-of-measurement.png)
+This allows users to monitor their progress over time, including total distance covered per month and average pace per month.
 
-#### Structured Display
-
-Progress data is presented in a structured format, making it easy for users to understand their fitness journey.
-
-![Structured Display](assets/readme-files/activity-level.png)
+![Display Progress](assets/readme-files/progress-table.png)
 
 ### Navigation Options
 
 Users can choose to go back to the main menu or exit the program after viewing progress.
 
-![Navigation Options](assets/readme-files/diet.png)
+![Navigation Options](assets/readme-files/sub-menu.png)
 
 ### Exit Program
 
-#### Exit Option
-
-Users can choose to exit the program, ending their session.
-
-![Exit Option](assets/readme-files/activity-level.png)
-
-### Confirmation Prompt
-
 A confirmation message is displayed before exiting the program, ensuring users intend to exit.
 
-![Confirmation Prompt](assets/readme-files/diet.png)
+![Confirmation Prompt](assets/readme-files/exit-app.png)
 
 Date | Distance (km) | Duration (h:mm)
 ---|---|---
@@ -199,6 +181,8 @@ Keep the tracker running seamlessly until I decide to exit, providing uninterrup
 Sync workout logs and progress data with Google Sheets, leveraging the gspread library for seamless interaction and real-time updates, ensuring data accessibility and convenience for users.
 
 ### Future Features
+
+Delete or update tables. 
 
 [Back to top ⇧](#fitness-tracker)
 
@@ -260,7 +244,22 @@ The [PEP8 online check](https://pep8ci.herokuapp.com/#) was used continuosly dur
         <th>Outcome</th>
         <th>Example</th>
         <th>Pass/Fail</th>
-    </tr>    
+    </tr> 
+    <tr>
+        <td rowspan=2>Menu Format</td>
+        <td>Validates that input for the main menu choice is one of the valid options: 1, 2, 3, or 4.</td>
+        <td><img src=assets/readme-files/main-menu-invalid.png alt="Age value is empty"></td>
+        <td>Pass</td>
+    </tr>
+        <td>Validates that input for the submenu choice is one of the valid options: 1 or 2</td>
+        <td><img src=assets/readme-files/sub-menu-invalid.png alt="Age value is too low"></td>
+        <td>Pass</td>
+    </tr>   
+    <tr>
+        <td>Data Entry</td>
+        <td>Ensures that exactly 3 values are entered for each workout: day, month, distance, and duration.</td>
+        <td><img src=assets/readme-files/values-invalid.png alt="Age value is empty"></td>
+        <td>Pass</td>
     <tr>
         <td rowspan=2>Workout Date Format</td>
         <td>Validates the workout date format (Day Month).</td>
@@ -269,27 +268,37 @@ The [PEP8 online check](https://pep8ci.herokuapp.com/#) was used continuosly dur
     </tr>
         <td>Validates the workout date format (Day Month).</td>
         <td><img src=assets/readme-files/age-low.png alt="Age value is too low"></td>
-        <td>Fail</td>
+        <td>Pass</td>
     </tr>
     <tr>
-        <td rowspan=2>Workout Date Format</td>
-        <td>Validates the workout date format (Day Month).</td>
+        <td rowspan=2>Distance Validation</td>
+        <td>Validates that the distance entered is a positive number.</td>
         <td><img src=assets/readme-files/age-empty.png alt="Age value is empty"></td>
         <td>Pass</td>
     </tr>
         <td>Validates the workout date format (Day Month).</td>
         <td><img src=assets/readme-files/age-low.png alt="Age value is too low"></td>
-        <td>Fail</td>
-    </tr>
-    <tr>
-        <td rowspan=2>Workout Date Format</td>
-        <td>Validates the workout date format (Day Month).</td>
-        <td><img src=assets/readme-files/age-empty.png alt="Age value is empty"></td>
         <td>Pass</td>
     </tr>
-        <td>Validates the workout date format (Day Month).</td>
+    <tr>
+        <td rowspan=4>Duration Format</td>
+        <td>Validates that the duration follows the format "h:mm" (hours:minutes).</td>
+        <td><img src=assets/readme-files/duration-format.png alt="Age value is empty"></td>
+        <td>Pass</td>
+    </tr>
+        <td>Validates that the hours are between 0 and 9 (inclusive).</td>
         <td><img src=assets/readme-files/age-low.png alt="Age value is too low"></td>
-        <td>Fail</td>
+        <td>Pass</td>
+    </tr>
+    </tr>
+        <td>Validates that the minutes are between 0 and 59.</td>
+        <td><img src=assets/readme-files/minutes-number-invalid.png alt="Age value is too low"></td>
+        <td>Pass</td>
+    </tr>
+    </tr>
+        <td>Ensures that the minutes are in a 2-digit format.</td>
+        <td><img src=assets/readme-files/two-digit-invalid.png alt="Age value is too low"></td>
+        <td>Pass</td>
     </tr>
 </table>
 

@@ -97,8 +97,10 @@ def validate_workout_data(data):
     try:
         hours = int(duration_parts[0])
         minutes = int(duration_parts[1])
-        if hours < 0 or hours > 9 or minutes < 0 or minutes >= 60:
-            raise ValueError(Fore.RED + "Invalid duration. Hours must be between 0 and 9, and minutes between 0 and 59")
+        if hours < 0 or hours > 9:
+            raise ValueError(Fore.RED + "Invalid duration. Hours must be between 0 and 9.")
+        if minutes < 0 or minutes >= 60:
+            raise ValueError(Fore.RED + "Invalid duration. Minutes must be between 0 and 59.")
         # Ensure minutes are in 2-digit format
         if len(duration_parts[1]) != 2:
             raise ValueError(Fore.RED + "Minutes should be in 2-digit format.")
@@ -107,8 +109,6 @@ def validate_workout_data(data):
         return False
 
     return True
-
-
 
 def update_workout(data):
     """
@@ -294,7 +294,7 @@ def main():
     Main function to run the fitness tracker app.
     """
     print(Fore.LIGHTCYAN_EX + "Welcome to the Fitness Tracker App!\n")
-    print("The Fitness Tracker app serves as my dedicated tool for logging workouts,"
+    print("The Fitness Tracker app serves as my dedicated tool for logging workouts, "
           "tracking progress, and staying motivated as I prepare for my upcoming marathon.\n")
 
     while True:
