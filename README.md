@@ -90,7 +90,7 @@ The program's logic utilizes conditionals and loops to facilitate user interacti
 
 * Users can input their choice (1, 2, 3, or 4) to navigate through the program.
 
-![Main Menu](assets/readme-files/user-information.png)
+![Main Menu](assets/readme-files/main-menu.png)
 
 ### Enter Workout Data
 
