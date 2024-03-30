@@ -94,31 +94,17 @@ The program's logic utilizes conditionals and loops to facilitate user interacti
 
 ### Enter Workout Data
 
-#### User Input
-
 Users can enter workout details including the date, distance (in kilometers), and duration (in hours and minutes).
 
 ![User Input](assets/readme-files/enter-workout.png)
-
-#### Input Validation
-
-Input Validation: The program validates user input to ensure it meets specified format requirements.
-
-![Input Validation](assets/readme-files/system-of-measurement.png)
-
-#### Error Handling
-
-Error Handling: Clear error messages are displayed if invalid input is provided, guiding users to correct their input..
-
-![Error Handling](assets/readme-files/system-of-measurement.png)
 
 ### View Workout Logs
 
 #### Structured Display
 
-Users can view their workout logs directly from the terminal.
+* Users can view their workout logs directly from the terminal.
 
-Workout logs are displayed in a structured format including the date, distance, and duration of each workout.
+* Workout logs are displayed in a structured format including the date, distance, and duration of each workout.
 
 ![Display Logs](assets/readme-files/workout-table.png)
 
@@ -132,17 +118,17 @@ Users can choose to go back to the main menu or exit the program after viewing w
 
 #### Structured Display
 
-Users can view their progress directly from the terminal.
+* Users can view their progress directly from the terminal.
 
-Progress is displayed in a structured format including the month, total distance and average pace. 
+* Progress is displayed in a structured format including the month, total distance and average pace. 
 
-Progress data is automatically calculated based on the workout data collected.
+* Progress data is automatically calculated based on the workout data collected.
 
-This allows users to monitor their progress over time, including total distance covered per month and average pace per month.
+* This allows users to monitor their progress over time, including total distance covered per month and average pace per month.
 
 ![Display Progress](assets/readme-files/progress-table.png)
 
-### Navigation Options
+#### Navigation Options
 
 Users can choose to go back to the main menu or exit the program after viewing progress.
 
