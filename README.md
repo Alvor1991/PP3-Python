@@ -4,8 +4,6 @@
 
 The Fitness Tracker is a personalized application designed to streamline my marathon training journey. Developed with simplicity and functionality in mind, this tracker serves as my dedicated tool for logging workouts, tracking progress, and staying motivated as I prepare for my upcoming marathon.
 
-The Fitness Tracker utilizes Google Sheets as a central repository for storing workout logs and tracking progress data. The gspread library is integrated into the application to enable seamless interaction with Google Sheets, allowing for real-time updates and easy access to training data.
-
 Visit the deployed application [here](https://marathon-tracker-3c8498abb267.herokuapp.com/).
 
 ## Table of Contents
@@ -38,8 +36,6 @@ Visit the deployed application [here](https://marathon-tracker-3c8498abb267.hero
 
 ### Project Goals
 
-The Marathon Tracker project aims to provide a user-friendly and efficient tool for managing and tracking marathon training progress. The following goals have been established to ensure the application meets its intended purpose:
-
 * Clarity and accessibility - present the tracker in a clear and understandable manner.
 
 * Intuitive workflow - design each step of the tracker to be intuitive and straightforward.
@@ -66,15 +62,43 @@ The Marathon Tracker project aims to provide a user-friendly and efficient tool 
 
 ### Color Scheme
 
+Colorama has been used to apply color to the terminal text, to make the program more intuitive and easier to read.
+
+* Light cyan is used for headings and prompts in the terminal.
+
+* Green is used for indicating success or valid input.
+
+* Red is used for indicating errors or invalid input.
+
 ### Data Model
 
-User input data, such as workout details and preferences, are collected through the terminal interface and stored as variables for processing.
+#### Google Sheets Integration
 
-Input validation mechanisms ensure the accuracy and integrity of the data provided by the user.
+The application interacts with Google Sheets to store workout logs and progress data. Data is stored in a tabular format, with each row representing a workout log or progress entry.
 
-Calculations, such as progress tracking and average pace computation, are performed using stored variables and presented in a clear and understandable format for the user.
+#### Worksheet Structure
 
-The program's logic utilizes conditionals and loops to facilitate user interactions and data processing seamlessly.
+My Google Sheets document contains at two worksheets: one for storing workout logs and another for tracking progress. Each worksheet has columns for different attributes such as date, distance, duration and calculated fields like total distance and average pace.
+
+#### Workout Log Data
+
+Each workout log entry consists of data such as the workout date, distance covered (in kilometers), and duration (in hours and minutes).
+
+#### Progress Data
+
+Progress data is calculated based on the accumulated workout logs. It includes metrics such as total distance covered and average pace for each month.
+
+#### Data Validation
+
+The application includes functions to validate input data to ensure it conforms to expected formats and criteria. For example, validating workout dates, distances, and durations.
+
+#### User Interaction
+
+Users interact with the application through a terminal interface, providing input for entering workout data, viewing logs, and tracking progress
+
+#### Data Processing
+
+Data processing functions are included to handle tasks such as calculating progress, formatting data for display, and updating the Google Sheets document with new entries or progress updates.
 
 ### Flowchart
 
@@ -157,14 +181,6 @@ February  | 15 | 0:25
 February  | 15 | 0:25
 March  | 15 | 0:25
 March  | 15 | 0:25
-
-### Continuous Operation
-
-Keep the tracker running seamlessly until I decide to exit, providing uninterrupted access to workout logging and progress tracking features.
-
-### Google Sheets Integration
-
-Sync workout logs and progress data with Google Sheets, leveraging the gspread library for seamless interaction and real-time updates, ensuring data accessibility and convenience for users.
 
 ### Future Features
 
