@@ -218,17 +218,17 @@ The [PEP8 online check](https://pep8ci.herokuapp.com/#) was used continuosly dur
 
 Sure, here's a summary of the errors:
 
-* W291: Trailing whitespace: There are trailing whitespaces at the end of lines. These should be removed.
+* **W291:** Trailing whitespace: There are trailing whitespaces at the end of lines. These should be removed.
 
-* E302: Expected 2 blank lines, found 1: This error occurs when there is only one blank line between two sections where two blank lines are expected. You should add an extra blank line where required.
+* **E302:** Expected 2 blank lines, found 1: This error occurs when there is only one blank line between two sections where two blank lines are expected. You should add an extra blank line where required.
 
-* W293: Blank line contains whitespace: This error indicates that there are whitespaces on blank lines, which should be removed.
+* **W293:** Blank line contains whitespace: This error indicates that there are whitespaces on blank lines, which should be removed.
 
-* **E501**: Line too long: Lines are exceeding the recommended maximum length of 79 characters. Consider breaking them into multiple lines to improve readability.
+* **E501:** Line too long: Lines are exceeding the recommended maximum length of 79 characters. Consider breaking them into multiple lines to improve readability.
 
-* E305: Expected 2 blank lines after class or function definition, found 1: Similar to E302, this error occurs when there's only one blank line where two are expected, specifically after class or function definitions.
+* **E305:** Expected 2 blank lines after class or function definition, found 1: Similar to E302, this error occurs when there's only one blank line where two are expected, specifically after class or function definitions.
 
-* W292: No newline at end of file: This warning suggests adding a newline at the end of the file, which is a common convention.
+* **W292:** No newline at end of file: This warning suggests adding a newline at the end of the file, which is a common convention.
 
 ![PEP8 Code Validation](assets/readme-files/pep8-code-validation.png)
 
@@ -264,7 +264,7 @@ Sure, here's a summary of the errors:
         <td>Pass</td>
     </tr>
     <tr>
-        <td rowspan=2>Workout Date Format</td>
+        <td>Workout Date Format</td>
         <td>Validates the workout date format (Day Month).</td>
         <td><img src=assets/readme-files/workout-date.png alt="Age value is empty"></td>
         <td>Pass</td>
