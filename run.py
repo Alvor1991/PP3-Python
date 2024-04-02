@@ -76,7 +76,7 @@ def validate_workout_data(data):
     try:
         workout_date = datetime.strptime(data[0].strip(), "%d %B")
     except ValueError:
-        print(Fore.RED + "Invalid workout date format. Please use Day Month format")
+        print(Fore.RED + "Invalid date format. Please use Day Month format")
         print(Fore.RED + "(e.g., 3 March).")
         return False
 
@@ -293,7 +293,7 @@ def main():
     """
     Main function to run the fitness tracker app.
     """
-    print(Fore.LIGHTCYAN_EX + "Welcome to the Fitness Tracker App!\n")
+    print(Fore.LIGHTCYAN_EX + "Welcome to the Fitness Tracker app!\n")
     print("The Fitness Tracker app serves as my dedicated tool for logging workouts,\n"
       "tracking progress, and staying motivated as I prepare for my upcoming marathon.\n")
 

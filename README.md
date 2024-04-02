@@ -2,7 +2,7 @@
 
 ![Fitness Tracker mockup image](assets/readme-files/welcome.png)
 
-The Fitness Tracker is a personalized application designed to streamline my marathon training journey. Developed with simplicity and functionality in mind, this tracker serves as my dedicated tool for logging workouts, tracking progress, and staying motivated as I prepare for my upcoming marathon.
+The Fitness Tracker app is a personalized application designed to streamline my marathon training journey. Developed with simplicity and functionality in mind, this tracker serves as my dedicated tool for logging workouts, tracking progress, and staying motivated as I prepare for my upcoming marathon.
 
 Visit the deployed application [here](https://marathon-tracker-3c8498abb267.herokuapp.com/).
 
@@ -164,24 +164,6 @@ A confirmation message is displayed before exiting the program, ensuring users i
 
 ![Confirmation Prompt](assets/readme-files/exit-app.png)
 
-Date | Distance (km) | Duration (h:mm)
----|---|---
-5 January | 5 | 0:40
-10 January | 10 | 1:30
-15 February | 5 | 0:35
-20 February | 10 | 1:20
-25 March | 5 | 0:30
-31 March | 10 | 1:10
-
-Month | Total Distance (km) | Average Pace (mm:ss)
----|---|---
-January  | 15 | 0:25
-January  | 15 | 0:25
-February  | 15 | 0:25
-February  | 15 | 0:25
-March  | 15 | 0:25
-March  | 15 | 0:25
-
 ### Future Features
 
 Delete or update tables. 
@@ -233,6 +215,20 @@ Delete or update tables.
 ### Code Validation
 
 The [PEP8 online check](https://pep8ci.herokuapp.com/#) was used continuosly during the development proces to validate the Python code for PEP8 requirements.
+
+Sure, here's a summary of the errors:
+
+* W291: Trailing whitespace: There are trailing whitespaces at the end of lines. These should be removed.
+
+* E302: Expected 2 blank lines, found 1: This error occurs when there is only one blank line between two sections where two blank lines are expected. You should add an extra blank line where required.
+
+* W293: Blank line contains whitespace: This error indicates that there are whitespaces on blank lines, which should be removed.
+
+* **E501**: Line too long: Lines are exceeding the recommended maximum length of 79 characters. Consider breaking them into multiple lines to improve readability.
+
+* E305: Expected 2 blank lines after class or function definition, found 1: Similar to E302, this error occurs when there's only one blank line where two are expected, specifically after class or function definitions.
+
+* W292: No newline at end of file: This warning suggests adding a newline at the end of the file, which is a common convention.
 
 ![PEP8 Code Validation](assets/readme-files/pep8-code-validation.png)
 
@@ -338,8 +334,5 @@ The application has been deployed using [Heroku](https://id.heroku.com/) by foll
 
 ## Acknowledgements
 
-* My tutor, Marcel, for his invaluable feedback and guidance.
-
-* Code Institute and its amazing Slack community for their support and providing me with the necessary knowledge to complete this project.
 
 
