@@ -46,19 +46,13 @@ Visit the deployed application [here](https://marathon-tracker-3c8498abb267.hero
 
 ### User Stories
 
-* As a user, I want to log my workouts.
-
-* As a user, I want to view my workout log.
-
-* As a user, I want to view my progress each month.
-
-* As a user, I want the workouts and progress to be presented clearly.
-
 * As a user, I want to understand the main objective of the program clearly to know its purpose.
 
-* As a user, I want each step to be easy to comprehend, ensuring I provide the correct input without confusion.
+* As a user, I want to easily understand what input is needed on each step.
 
-* As a user, I expect clear feedback if I input incorrect data, helping me rectify mistakes efficiently.
+* As a user, I want to receive clear feedback in case I provide the wrong input.
+
+* As a user, I want the workouts and progress to be presented clearly.
 
 ### Color Scheme
 
@@ -78,7 +72,7 @@ The application interacts with Google Sheets to store workout logs and progress 
 
 #### Worksheet Structure
 
-My Google Sheets document contains at two worksheets: one for storing workout logs and another for tracking progress. Each worksheet has columns for different attributes such as date, distance, duration and calculated fields like total distance and average pace.
+My Google Sheets document contains two worksheets: one for storing workout logs and another for tracking progress. Each worksheet has columns for different attributes such as date, distance, duration, and calculated fields like total distance and average pace.
 
 #### Workout Log Data
 
@@ -94,7 +88,7 @@ The application includes functions to validate input data to ensure it conforms 
 
 #### User Interaction
 
-Users interact with the application through a terminal interface, providing input for entering workout data, viewing logs, and tracking progress
+Users interact with the application through a terminal interface, providing input for entering workout data, viewing logs, and tracking progress.
 
 #### Data Processing
 
@@ -102,7 +96,9 @@ Data processing functions are included to handle tasks such as calculating progr
 
 ### Flowchart
 
-![Fitness Tracker Flowchart](assets/readme-files/flowchart.jpg)
+The following flowchart was designed using draw.io in order to plan the logic to be implemented in the program.
+
+![Fitness Tracker Flowchart](assets/readme-files/flowchart.png)
 
 [Back to top ⇧](#fitness-tracker)
 
@@ -190,7 +186,7 @@ Delete or update tables.
 
 * [Colorama](https://pypi.org/project/colorama/) library was used to apply color to the terminal text. 
 
-* [Miro](https://miro.com/) was used to create the program flowchart.
+* [draw.io](https://www.drawio.com) was used to create the program flowchart.
 
 [Back to top ⇧](#macro-calculator)
 
@@ -198,23 +194,29 @@ Delete or update tables.
 
 ### Testing User Stories
 
-* As a user, I want to log my workouts.
+* As a user, I want to understand the main objective of the program clearly to know its purpose.
 
-* As a user, I want to view my workout log.
+   - Details about the purpose of the fitness tracker application are presented in the welcome message, providing an overview of how the application is intended to be used.
 
-* As a user, I want to view my progress each month.
+* As a user, I want to easily understand what input is needed on each step.
+
+   - Input prompts are displayed in light green text, clearly indicating the required input from the user.
+   
+   - Detailed information is provided alongside the input prompts, explaining the format and type of data expected from the user.
+
+* As a user, I want to receive clear feedback in case I provide the wrong input.
+
+   - Error messages are prominently displayed in red, clearly indicating when incorrect input is provided.
+
+   - Error messages explain the issue with the input provided, helping the user understand what went wrong and how to correct it.
 
 * As a user, I want the workouts and progress to be presented clearly.
 
-* As a user, I want to understand the main objective of the program clearly to know its purpose.
-
-* As a user, I want each step to be easy to comprehend, ensuring I provide the correct input without confusion.
-
-* As a user, I expect clear feedback if I input incorrect data, helping me rectify mistakes efficiently.
+   - Workouts and progress are displayed in a clear and visually appealing manner, utilizing a table format to enhance clarity.
 
 ### Code Validation
 
-[PEP8 online check](https://pep8ci.herokuapp.com/#) was used during the development proces to validate the Python code for PEP8 requirements.
+[PEP8 online check](https://pep8ci.herokuapp.com/#) was used during the development process to validate the Python code for PEP8 requirements.
 
 Here's a summary of the errors:
 
@@ -230,7 +232,7 @@ Here's a summary of the errors:
 
 * **W292:** No newline at end of file: This warning suggests adding a newline at the end of the file, which is a common convention.
 
-![PEP8 Code Validation](assets/readme-files/pep8-code-validation.png)
+![PEP8 Code Validation](assets/readme-files/code-validation.png)
 
 ### Manual Testing
 
@@ -325,14 +327,9 @@ The application has been deployed using [Heroku](https://id.heroku.com/) by foll
 
 ### Content
 
-### Media
-
 ### Code
-* [Stack Overflow](https://stackoverflow.com/) was consulted on a regular basis for inspiration and sometimes to be able to better understand the code being implement.
+* [Stack Overflow](https://stackoverflow.com/) was consulted on a regular basis for inspiration and sometimes to be able to better understand the code being implemented.
 
 [Back to top ⇧](#fitness-tracker)
 
 ## Acknowledgements
-
-
-
