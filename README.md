@@ -162,7 +162,13 @@ A confirmation message is displayed before exiting the program, ensuring users i
 
 ### Future Features
 
-Delete or update tables. 
+#### Delete or Update Entries
+
+Implement functionality to allow users to delete or update workout logs or progress entries. This feature will provide users with more control over their data and enable them to make corrections or remove outdated information as needed.
+
+#### Goal Setting and Tracking
+
+Introduce the ability for users to set fitness goals, such as target distances or times, and track their progress towards these goals. This feature will enhance motivation and provide users with a clear sense of achievement as they work towards their objectives.
 
 [Back to top ⇧](#fitness-tracker)
 
@@ -235,8 +241,6 @@ Here's a summary of the errors:
 ![PEP8 Code Validation](assets/readme-files/code-validation.png)
 
 ### Manual Testing
-
-#### Workout Date Format
 
 <table>
     <tr>
@@ -325,11 +329,13 @@ The application has been deployed using [Heroku](https://id.heroku.com/) by foll
 
 ## Credits
 
-### Content
-
 ### Code
 * [Stack Overflow](https://stackoverflow.com/) was consulted on a regular basis for inspiration and sometimes to be able to better understand the code being implemented.
 
 [Back to top ⇧](#fitness-tracker)
 
 ## Acknowledgements
+
+* My tutor, Marcel, for his  feedback and guidance.
+
+* Code Institute and the Slack community.
