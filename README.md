@@ -252,51 +252,51 @@ Here's a summary of the errors:
     <tr>
         <td rowspan=2>Menu Format</td>
         <td>Validates that input for the main menu choice is one of the valid options: 1, 2, 3, or 4.</td>
-        <td><img src=assets/readme-files/main-menu-invalid.png alt=""></td>
+        <td><img src=assets/readme-files/main-menu-invalid.png alt="main menu invalid input"></td>
         <td>Pass</td>
     </tr>
         <td>Validates that input for the submenu choice is one of the valid options: 1 or 2</td>
-        <td><img src=assets/readme-files/sub-menu-invalid.png alt=""></td>
+        <td><img src=assets/readme-files/sub-menu-invalid.png alt="sub menu invalid input"></td>
         <td>Pass</td>
     </tr>   
     <tr>
         <td rowspan=2>Data Entry Values</td>
         <td>Validates that exactly 3 values have been entered correctly each workout: day, month, distance, and duration.</td>
-        <td><img src=assets/readme-files/valid-workout.png alt=""></td>
+        <td><img src=assets/readme-files/valid-workout.png alt="valid workout entry"></td>
         <td>Pass</td>
     </tr>
         <td>Validates that exactly 3 values have been not been entered correclty.</td>
-        <td><img src=assets/readme-files/values-invalid.png alt=""></td>
+        <td><img src=assets/readme-files/values-invalid.png alt="invalid workout entry"></td>
         <td>Pass</td>
     </tr>
     <tr>
         <td>Workout Date Format</td>
         <td>Validates the workout date format (Day Month).</td>
-        <td><img src=assets/readme-files/workout-date.png alt=""></td>
+        <td><img src=assets/readme-files/workout-date.png alt="workout date format"></td>
         <td>Pass</td>
     <tr>
         <td>Distance Validation</td>
         <td>Validates that the distance entered is a positive number.</td>
-        <td><img src=assets/readme-files/distance-positive.png alt=""></td>
+        <td><img src=assets/readme-files/distance-positive.png alt="positive distance validation"></td>
         <td>Pass</td>
     <tr>
         <td rowspan=4>Duration Format</td>
         <td>Validates that the duration follows the format "h:mm" (hours:minutes).</td>
-        <td><img src=assets/readme-files/duration-format.png alt=""></td>
+        <td><img src=assets/readme-files/duration-format.png alt="duration format"></td>
         <td>Pass</td>
     </tr>
         <td>Validates that the hours are between 0 and 9 (inclusive).</td>
-        <td><img src=assets/readme-files/hours-invalid.png alt=""></td>
+        <td><img src=assets/readme-files/hours-invalid.png alt="invalid hours entry"></td>
         <td>Pass</td>
     </tr>
     </tr>
         <td>Validates that the minutes are between 0 and 59.</td>
-        <td><img src=assets/readme-files/minutes-number-invalid.png alt=""></td>
+        <td><img src=assets/readme-files/minutes-number-invalid.png alt="invalid minutes entry"></td>
         <td>Pass</td>
     </tr>
     </tr>
         <td>Validates that the minutes are in a 2-digit format.</td>
-        <td><img src=assets/readme-files/two-digit-invalid.png alt=""></td>
+        <td><img src=assets/readme-files/two-digit-invalid.png alt="two-digit minutes entry"></td>
         <td>Pass</td>
     </tr>
 </table>
