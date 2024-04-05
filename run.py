@@ -303,7 +303,7 @@ def main():
     Main function to run the fitness tracker app.
     """
     print(Fore.LIGHTCYAN_EX + "Welcome to the Fitness Tracker app!\n")
-    print("The Fitness Tracker app serves as my dedicated tool for "
+    print("The Fitness Tracker app serves as my dedicated tool for\n"
           "logging workouts, tracking progress, and staying motivated\n"
           "as I prepare for my upcoming marathon.\n")
 
